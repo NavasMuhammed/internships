@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Box, Typography, Grid, Button, Link, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import SendIcon from "@mui/icons-material/Send";
-import "./Home.css";
+import "../styles/home.css";
 import work from "./image/work.jfif";
 import job from "./image/jobs.png";
 import { useDispatch, useSelector } from "react-redux";

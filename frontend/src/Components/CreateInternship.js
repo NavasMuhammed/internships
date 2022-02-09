@@ -337,12 +337,13 @@ function CreateInternship() {
                     </Select>
                   </FormControl>
 
-                  <FormGroup>
+                  {/* <FormGroup>
                     <FormControlLabel
                       control={<Checkbox defaultChecked />}
                       label="Allow application ONLY from the above or the neighbouring cities"
                     />
-                  </FormGroup>
+                  </FormGroup> */}
+                  <br />
                   <FormControl sx={{ marginTop: "1rem" }} component="fieldset">
                     <FormLabel component="legend">
                       Is part time allowed? *
@@ -409,7 +410,6 @@ function CreateInternship() {
                         control={<Radio />}
                         onClick={() => setIsImmediately(true)}
                         label="Immediately (within 30 days)"
-                        onClick={(e) => {}}
                       />
                       <FormControlLabel
                         value="no"
@@ -419,7 +419,7 @@ function CreateInternship() {
                       />
                     </RadioGroup>
 
-                    {isImmediately == false ? (
+                    {isImmediately === false ? (
                       <input
                         type="date"
                         name="startsAt"
@@ -720,7 +720,7 @@ function CreateInternship() {
                   value={form.skillsRequired}
                   onChange={handleChange}
                 ></TextField>
-                <FormGroup>
+                {/* <FormGroup>
                   <FormControlLabel
                     control={<Checkbox />}
                     label="Allow application from women also who are willing to start/restart their career"
@@ -735,7 +735,7 @@ function CreateInternship() {
                   >
                     know more.
                   </Link>
-                </FormGroup>
+                </FormGroup> */}
                 <Typography sx={{ fontWeight: "bold" }}>Assessment</Typography>
                 <Typography mt={1}>
                   Question 1&2 will be asked to every applicants by default. if

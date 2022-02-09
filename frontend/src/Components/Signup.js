@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import {Link, useNavigate} from "react-router-dom"
 import React, {useEffect, useState} from "react";
-import "./Student.css";
+import "../styles/signup.css";
 import GoogleIcon from "@mui/icons-material/Google";
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -18,6 +18,7 @@ import FormLabel from '@mui/material/FormLabel';
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../actions/userActions";
 import FileBase from 'react-file-base64';
+import axios from "axios";
 function Signup() {
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
@@ -76,6 +77,34 @@ function Signup() {
     location:"Mumbai",
     website:""
   });
+  const uploadCompanyLogo = async(e)=>{
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", e.target.files[0]);
+    formData.append("upload_preset", "ih1rthv8");
+    await axios
+      .post("https://api.cloudinary.com/v1_1/vdshgp/image/upload", formData)
+      .then((response) => {
+        // console.log(response.data.secure_url);
+        setUser({...user, profilePicture:response.data.secure_url});
+        console.log(user)
+        
+      });
+  }
+  const uploadCertificateOfIncorporation = async(e)=>{
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", e.target.files[0]);
+    formData.append("upload_preset", "ih1rthv8");
+    await axios
+      .post("https://api.cloudinary.com/v1_1/vdshgp/image/upload", formData)
+      .then((response) => {
+        // console.log(response.data.secure_url);
+        setUser({...user, certificateOfIncorporation:response.data.secure_url});
+        console.log(user)
+        
+      });
+  }
   const registerUser = ()=>{
     console.log(user);
     console.log("User register");
@@ -254,7 +283,8 @@ function Signup() {
           {/* <br /> */}
           <p>Company Logo</p>
           <div label="Company Logo">
-          <FileBase type="file" multiple={false} onDone={({ base64 }) => setUser({ ...user, profilePicture: base64 })} />
+          <input type="file" onChange={uploadCompanyLogo} />
+          {/* <FileBase type="file" multiple={false} onDone={({ base64 }) => setUser({ ...user, profilePicture: base64 })} /> */}
           </div>
           <br />
           <p>Certificate of Incorporation</p>
@@ -262,7 +292,8 @@ function Signup() {
             <div
           >
           {/* <TextField> */}
-          <FileBase type="file" multiple={false} onDone={({ base64 }) => setUser({ ...user, certificateOfIncorporation: base64 })} />
+          <input type="file" onChange={uploadCertificateOfIncorporation} />
+          {/* <FileBase type="file" multiple={false} onDone={({ base64 }) => setUser({ ...user, certificateOfIncorporation: base64 })} /> */}
           {/* </TextField> */}
           </div>
           

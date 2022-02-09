@@ -7,7 +7,7 @@ import {
   Link,
 } from "@mui/material";
 import { React, useState } from "react";
-import "./Employ.css";
+import "../styles/employ.css";
 import GoogleIcon from "@mui/icons-material/Google";
 // import Login from "../../login/Login";
 

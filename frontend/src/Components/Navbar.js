@@ -58,6 +58,9 @@ const Navbar = () => {
           <ListItemButton component={Link} to="/">
             <ListItemText primary="Home"></ListItemText>
           </ListItemButton>
+          <ListItemButton component={Link} to="/profile">
+            <ListItemText primary="Profile"></ListItemText>
+          </ListItemButton>
           <ListItemButton component={Link} to="/contact">
             <ListItemText primary="Contact Us"></ListItemText>
           </ListItemButton>

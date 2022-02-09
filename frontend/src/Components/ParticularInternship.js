@@ -137,7 +137,24 @@ const ParticularInternship = (props) => {
           {/* {data} */}
           {internshipDetail.title} {internshipDetail.location} internship at{" "}
           <br /> {internshipDetail.companyName}
+          {/* {userInfo.profilePicture}
+           */}
+          {internshipDetail.companyLogo !== "" ? (
+            <img
+              src={internshipDetail.companyLogo}
+              style={{
+                width: "200px",
+                borderRadius: "100%",
+                marginLeft: "200px"
+              }}
+              alt=""
+            />
+          ) : (
+            ""
+          )}
+          {/* <img src={userInfo.profilePicture} alt="company-logo" /> */}
         </Typography>
+
         {new Date(internshipDetail.lastDate) < new Date() ? (
           <Typography
             sx={{ border: "3px solid #FFAB76 ", color: "#B3541E" }}
@@ -234,7 +251,7 @@ const ParticularInternship = (props) => {
                       {moment(internshipDetail.lastDateToApply).date()}{" "}
                       {
                         monthNames[
-                          moment(internshipDetail.lastDateToApply).month()
+                        moment(internshipDetail.lastDateToApply).month()
                         ]
                       }
                       , {moment(internshipDetail.lastDateToApply).year()}

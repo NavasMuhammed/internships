@@ -2,7 +2,7 @@ import { Grid, Paper, TextField, Button, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import { React, useState, useEffect } from "react";
-import "./Login.css";
+import "../styles/login.css";
 import CloseIcon from "@mui/icons-material/Close";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useDispatch, useSelector } from "react-redux";
