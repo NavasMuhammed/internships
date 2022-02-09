@@ -110,6 +110,10 @@ const InternshipSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
+    nameOfCompany: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
