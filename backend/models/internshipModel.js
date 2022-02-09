@@ -110,14 +110,14 @@ const InternshipSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
-    noOfCompanys: {
-      type: String,
-      required: true,
-    },
-    noOfEmployees: {
-      type: Number,
-      required: true,
-    },
+    // noOfCompanys: {
+    //   type: String,
+    //   required: true,
+    // },
+    // noOfEmployees: {
+    //   type: Number,
+    //   required: true,
+    // },
   },
   {
     timestamps: true,
