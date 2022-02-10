@@ -30,6 +30,7 @@ import Stack from "@mui/material/Stack";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import axios from "axios";
+import Modal from '@mui/material/Modal';
 import { createInternship } from "../actions/internshipActions";
 // import { logout } from "../actions/userActions";
 import { allInternshipsListAction } from "../actions/internshipActions";
@@ -47,6 +48,9 @@ function CreateInternship() {
 
     setOpen(false);
   };
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleModalOpen = () => setModalOpen(true);
+  const handleModalClose = () => setModalOpen(false);
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
   const [isImmediately, setIsImmediately] = useState(true);
@@ -124,6 +128,8 @@ function CreateInternship() {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
   const [otherTitle, setOtherTitle] = useState("");
+  const [questionsArray, setQuestionsArray] = useState(["Why should you be hired for this internship?", "Are you available for the duration of internship?"])
+
   const [form, setForm] = useState({
     employerId: userInfo.data._id,
     title: "",
@@ -141,11 +147,12 @@ function CreateInternship() {
     noOfOpenings: 0,
     skillsRequired: "",
     perks: [],
-    questions: [],
+    questions: questionsArray,
     isPartTime: false,
     isPPO: false,
     website: userInfo.data.website,
   });
+  const [question, setQuestion] = useState("")
 
   return (
     <>
@@ -736,22 +743,64 @@ function CreateInternship() {
                     know more.
                   </Link>
                 </FormGroup> */}
+                <br />
                 <Typography sx={{ fontWeight: "bold" }}>Assessment</Typography>
                 <Typography mt={1}>
                   Question 1&2 will be asked to every applicants by default. if
                   you wish, you may ask two or more customized questions.
                 </Typography>
-                <Typography mt={1}>
+                {questionsArray.map((q) => (
+                  <Typography mt={1}>
+                    <span style={{ fontWeight: "bold" }}>Question {questionsArray.indexOf(q) + 1}:</span>
+                    {q}
+                  </Typography>
+                ))}
+                {/* <Typography mt={1}>
                   <span style={{ fontWeight: "bold" }}>Question 1:</span>
                   Why should you be hired for this internship?
                 </Typography>
                 <Typography mb={1} mt={1}>
                   <span style={{ fontWeight: "bold" }}>Question 2:</span>
                   Are you available for 6 months?
-                </Typography>
-                <Link href="#" sx={{ textDecoration: "none" }}>
-                  Ask customized questions
-                </Link>
+                </Typography> */}
+                {/* <br /> */}
+                <Button onClick={handleModalOpen}>Add a customized question</Button>
+
+                <Modal
+                  open={modalOpen}
+                  onClose={handleModalClose}
+                >
+                  <Box sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: 800,
+                    bgcolor: 'background.paper',
+                    border: '2px solid #000',
+                    boxShadow: 24,
+                    p: 4
+                  }}>
+                    <Typography variant="h6" component="h2">
+                      Add a customized question
+                    </Typography>
+                    <TextField fullWidth onChange={(e) => { setQuestion(e.target.value); console.log(question) }} id="standard-basic" label="Add a customized question" variant="standard" />
+                    <br /><br />
+                    <Button variant="contained" color="primary"
+                      onClick={() => {
+                        questionsArray.push(question)
+                        // setQuestionsArray({ ...questionsArray, question }); 
+                        console.log(questionsArray)
+                        console.log(form)
+                        setModalOpen(false)
+                      }}
+                    >Add Question</Button>
+                    {/* <Typography sx={{ mt: 2 }}>
+                      Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                    </Typography> */}
+                  </Box>
+                </Modal>
+
               </Grid>
             </Paper>
           </Grid>
