@@ -67,6 +67,9 @@ const Navbar = () => {
           <ListItemButton component={Link} to="/about">
             <ListItemText primary="About Us"></ListItemText>
           </ListItemButton>
+          <ListItemButton component={Link} to="/resume">
+            <ListItemText primary="Resume"></ListItemText>
+          </ListItemButton>
           <ListItemButton component={Link} to="/allInternships">
             <ListItemText primary="All Internships"></ListItemText>
           </ListItemButton>
@@ -103,36 +106,38 @@ const Navbar = () => {
           </Typography>
           {/* <div className={classes.sectionDesktop}> */}
           <div>
-            {userInfo ? (<>
-              <div style={{ display: "flex" }}>
-                <p style={{ marginTop: "10px" }}> Welcome, </p>
-                <h1 style={{ marginLeft: "5px" }}>{userInfo.data.name}</h1>
+            {userInfo ? (
+              <>
+                <div style={{ display: "flex" }}>
+                  <p style={{ marginTop: "10px" }}> Welcome, </p>
+                  <h1 style={{ marginLeft: "5px" }}>{userInfo.data.name}</h1>
 
-                {userInfo.data.isEmployer == true ? (
+                  {userInfo.data.isEmployer == true ? (
+                    <Button
+                      variant="contained"
+                      sx={{ mr: 2, ml: 2 }}
+                      color="inherit"
+                      style={{ backgroundColor: "#5996ff" }}
+                      component={Link}
+                      to="/createInternship"
+                    >
+                      Post Internship
+                    </Button>
+                  ) : (
+                    ""
+                  )}
                   <Button
                     variant="contained"
                     sx={{ mr: 2, ml: 2 }}
                     color="inherit"
-                    style={{ backgroundColor: "#5996ff" }}
-                    component={Link}
-                    to="/createInternship"
+                    style={{ backgroundColor: "red" }}
+                    endIcon={<LoginIcon fontSize="small" />}
+                    onClick={handleLogout}
                   >
-                    Post Internship
+                    Logout
                   </Button>
-                ) : ""}
-                <Button
-                  variant="contained"
-                  sx={{ mr: 2, ml: 2 }}
-                  color="inherit"
-                  style={{ backgroundColor: "red" }}
-                  endIcon={<LoginIcon fontSize="small" />}
-                  onClick={handleLogout}
-                >
-                  Logout
-                </Button>
-              </div>
-            </>
-
+                </div>
+              </>
             ) : (
               <>
                 <Button
@@ -150,18 +155,19 @@ const Navbar = () => {
                 <PopupState variant="popover" popupId="demo-popup-menu">
                   {(popupState) => (
                     <>
-                      <Link to="/signup" style={{ textDecoration: "none" }}><Button
-                        variant="contained"
-                        // color="success"
-                        // color="inherit"
-                        style={{ color: "white", backgroundColor: "#23b502" }}
-                      // {...bindTrigger(popupState)}
-                      // endIcon={<ArrowDropDownOutlinedIcon fontSize="small" />
+                      <Link to="/signup" style={{ textDecoration: "none" }}>
+                        <Button
+                          variant="contained"
+                          // color="success"
+                          // color="inherit"
+                          style={{ color: "white", backgroundColor: "#23b502" }}
+                          // {...bindTrigger(popupState)}
+                          // endIcon={<ArrowDropDownOutlinedIcon fontSize="small" />
 
-                      // }
-                      >
-                        Register
-                      </Button>
+                          // }
+                        >
+                          Register
+                        </Button>
                       </Link>
                       {/* <Menu {...bindMenu(popupState)}>
                         <MenuItem
@@ -188,7 +194,9 @@ const Navbar = () => {
                       </Menu> */}
                     </>
                   )}
-                </PopupState></>)}
+                </PopupState>
+              </>
+            )}
             {/* <Button
               variant="outlined"
               sx={{ mr: 2 }}
