@@ -19,8 +19,8 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import Employee_dash from "./Components/Employee_dash";
 import Employee_intern_dash from "./Components/Employee_intern_dash";
 import CreateInternship from "./Components/CreateInternship";
-import Profile from "./Components/Profile"
-
+import Profile from "./Components/Profile";
+import Resume from "./Components/Profile";
 
 const theme = createTheme({
   margin: 0,
@@ -43,19 +43,38 @@ function App() {
             {/* <Route exact path="/register/Company" element={<Employ />} /> */}
             {/* <Route exact path="/login/StudentLog" element={<StudentLog />} /> */}
             {/* <Route exact path="/login/CompanyLog" element={<CompanyLog />} /> */}
-            <Route exact path="/login/MyApplication" element={<MyApplication />} />
-            <Route exact path="/allInternships" element={<AllInternships />} />
-            <Route exact path="/internship/:id" element={<ParticularInternship />} />
-            <Route exact path="/questions/:id" element={<Questions />} />
-            <Route exact path="/createInternship" element={<CreateInternship />} />
             <Route
-              exact path="/login/MyApplicationCard"
+              exact
+              path="/login/MyApplication"
+              element={<MyApplication />}
+            />
+            <Route exact path="/allInternships" element={<AllInternships />} />
+            <Route exact path="/resume" element={<Resume />} />
+            <Route
+              exact
+              path="/internship/:id"
+              element={<ParticularInternship />}
+            />
+            <Route exact path="/questions/:id" element={<Questions />} />
+            <Route
+              exact
+              path="/createInternship"
+              element={<CreateInternship />}
+            />
+            <Route
+              exact
+              path="/login/MyApplicationCard"
               element={<MyApplicationCard />}
             />
-            <Route exact path="/Employee/Dashboard" element={<Employee_dash />} />
+            <Route
+              exact
+              path="/Employee/Dashboard"
+              element={<Employee_dash />}
+            />
             <Route exact path="/profile" element={<Profile />} />
             <Route
-              exact path="/Employee/Internship"
+              exact
+              path="/Employee/Internship"
               element={<Employee_intern_dash />}
             />
           </Routes>
