@@ -49,7 +49,6 @@ function App() {
               element={<MyApplication />}
             />
             <Route exact path="/allInternships" element={<AllInternships />} />
-            <Route exact path="/resume" element={<Resume />} />
             <Route
               exact
               path="/internship/:id"
