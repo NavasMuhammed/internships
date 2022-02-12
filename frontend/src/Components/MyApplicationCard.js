@@ -5,13 +5,25 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import Typography from "@mui/material/Typography";
+import { useDispatch, useSelector } from "react-redux";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme, Paper, Container } from "@mui/material";
 
 const MyApplicationCard = () => {
   const theme = useTheme();
   // const classes = useStyles();
+  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+  const allUserApplicationsList = useSelector(
+    (state) => state.allUserApplications.userApplications
+  );
+  useEffect(() => {
+    console.log("All user Applications", allUserApplicationsList)
+    // dispatch(allEmployerInternshipsAction());
+    // console.log("Dispatched");
+  }, [dispatch]);
   return (
     <>
       <Box pt={3} textAlign="center">

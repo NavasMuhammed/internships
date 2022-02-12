@@ -8,7 +8,7 @@ import job from "./image/jobs.png";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import { allInternshipsListAction, allEmployerInternshipsAction } from "../actions/internshipActions";
-
+import { allUserApplicationsAction } from "../actions/applicationActions";
 const useStyles = makeStyles((theme) => ({
   topographyStyle: {
     display: "flex",
@@ -23,6 +23,7 @@ const Home = () => {
     dispatch(allInternshipsListAction());
     if (userInfo) {
       dispatch(allEmployerInternshipsAction(userInfo.data._id));
+      dispatch(allUserApplicationsAction(userInfo.data._id))
     }
     // console.log("Dispatched");
   }, [dispatch]);

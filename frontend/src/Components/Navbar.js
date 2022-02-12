@@ -70,15 +70,29 @@ const Navbar = () => {
           <ListItemButton component={Link} to="/allInternships">
             <ListItemText primary="All Internships"></ListItemText>
           </ListItemButton>
-          <ListItemButton component={Link} to="/login/MyApplicationCard">
-            <ListItemText primary="My Application"></ListItemText>
-          </ListItemButton>
-          <ListItemButton component={Link} to="/employer/dashboard">
-            <ListItemText primary="Employer Dashboard"></ListItemText>
-          </ListItemButton>
-          <ListItemButton component={Link} to="/employer/applications">
-            <ListItemText primary="Employer Applications"></ListItemText>
-          </ListItemButton>
+          {userInfo ? (
+            <>
+              {
+                userInfo.data.isEmployer === true ? (
+                  <>
+                    <ListItemButton component={Link} to="/employer/dashboard">
+                      <ListItemText primary="Employer Dashboard"></ListItemText>
+                    </ListItemButton>
+                    <ListItemButton component={Link} to="/employer/applications">
+                      <ListItemText primary="Employer Applications"></ListItemText>
+                    </ListItemButton>
+                  </>
+                ) : (
+                  <ListItemButton component={Link} to="myapplications">
+                    <ListItemText primary="My Applications"></ListItemText>
+                  </ListItemButton>
+                )
+              }
+            </>
+          ) : ("")}
+
+
+
           {/* <ListItemButton component={Link} to="/particularInternship">
             <ListItemText primary="Particular Internship"></ListItemText>
           </ListItemButton>

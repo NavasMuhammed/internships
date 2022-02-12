@@ -21,6 +21,7 @@ import Employee_intern_dash from "./Components/Employee_intern_dash";
 import CreateInternship from "./Components/CreateInternship";
 import Profile from "./Components/Profile";
 import Resume from "./Components/Profile";
+import MyApplicationTable from "./Components/MyApplicationTable"
 
 const theme = createTheme({
   margin: 0,
@@ -62,8 +63,8 @@ function App() {
             />
             <Route
               exact
-              path="/login/MyApplicationCard"
-              element={<MyApplicationCard />}
+              path="/myapplications"
+              element={<MyApplicationTable />}
             />
             <Route
               exact

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 // import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 // import { Typography, Box } from "@mui/material";
 import {
@@ -11,30 +12,60 @@ import {
   Typography,
   Box,
   Paper,
+  Button
 } from "@mui/material";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 
 const MyApplication = () => {
+  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+  const allUserApplicationsList = useSelector(
+    (state) => state.allUserApplications.userApplications
+  );
+  useEffect(() => {
+    console.log("All user Applications", allUserApplicationsList)
+    // dispatch(allEmployerInternshipsAction());
+    // console.log("Dispatched");
+  }, [dispatch]);
   return (
     <>
       <Box py={5} textAlign="center">
-        <Typography variant="h6">My Application</Typography>
+        <Typography variant="h6">My Applications</Typography>
       </Box>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>COMPANY</TableCell>
-              <TableCell>PROFILE</TableCell>
-              <TableCell>APPLIED ON</TableCell>
-              <TableCell>NUMBER OF APPLICANTS</TableCell>
-              <TableCell>APPLICATION STATUS</TableCell>
-              <TableCell>REVIEW APPLICATION</TableCell>
+              <TableCell><b>Sr. No.</b></TableCell>
+              <TableCell><b>COMPANY</b></TableCell>
+              <TableCell><b>PROFILE</b></TableCell>
+              <TableCell><b>APPLIED ON</b></TableCell>
+              <TableCell><b>NUMBER OF APPLICANTS</b></TableCell>
+              <TableCell><b>APPLICATION STATUS</b></TableCell>
+              <TableCell><b>REVIEW APPLICATION</b></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
+            {allUserApplicationsList.data.map((a) => (
+
+              <TableRow key={a._id}>
+                <TableCell>{allUserApplicationsList.data.indexOf(a) + 1}</TableCell>
+                <TableCell>{a.internshipId.companyName}</TableCell>
+                <TableCell>{a.internshipId.title}</TableCell>
+                <TableCell> {a.updatedAt.slice(0, 10)}</TableCell>
+                <TableCell>{a.internshipId.noOfApplicants}</TableCell>
+                <TableCell>
+                  Applied
+                  {/* <HelpOutlineOutlinedIcon fontSize="small" color="primary" /> */}
+                </TableCell>
+                <TableCell>
+                  <Button variant="contained" color="primary">View Application</Button>
+                </TableCell>
+              </TableRow>
+            ))}
+            {/* <TableRow>
               <TableCell>Ideadunes</TableCell>
               <TableCell>Web Development Internship</TableCell>
               <TableCell> 27 Dec' 21</TableCell>
@@ -46,8 +77,8 @@ const MyApplication = () => {
               <TableCell>
                 <DescriptionOutlinedIcon color="primary" />
               </TableCell>
-            </TableRow>
-            <TableRow>
+            </TableRow> */}
+            {/* <TableRow>
               <TableCell>Across The Globe(ATG)</TableCell>
               <TableCell>MERN Stack Development Internship</TableCell>
               <TableCell> 27 Dec' 21</TableCell>
@@ -59,8 +90,8 @@ const MyApplication = () => {
               <TableCell>
                 <DescriptionOutlinedIcon color="primary" />
               </TableCell>
-            </TableRow>
-            <TableRow>
+            </TableRow> */}
+            {/* <TableRow>
               <TableCell>Maxxed</TableCell>
               <TableCell>Web Development Internship</TableCell>
               <TableCell> 27 Dec' 21</TableCell>
@@ -72,7 +103,7 @@ const MyApplication = () => {
               <TableCell>
                 <DescriptionOutlinedIcon color="primary" />
               </TableCell>
-            </TableRow>
+            </TableRow> */}
           </TableBody>
         </Table>
       </TableContainer>

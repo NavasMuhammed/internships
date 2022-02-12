@@ -3,6 +3,9 @@ import {
     APPLICATION_CREATE_FAILS,
     APPLICATION_CREATE_REQUEST,
     APPLICATION_CREATE_SUCCESS,
+    ALL_USER_APPLICATIONS_REQUEST,
+    ALL_USER_APPLICATIONS_SUCCESS,
+    ALL_USER_APPLICATIONS_FAILS
 } from "../constants/applicationConstants";
 
 export const createApplication =
@@ -56,3 +59,25 @@ export const createApplication =
                 });
             }
         };
+
+
+export const allUserApplicationsAction = (id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: ALL_USER_APPLICATIONS_REQUEST,
+        });
+        const { data } = await axios.get(`/application/getApplicationsOfUser/${id}`);
+        dispatch({
+            type: ALL_USER_APPLICATIONS_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: ALL_USER_APPLICATIONS_FAILS,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};

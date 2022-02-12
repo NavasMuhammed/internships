@@ -166,6 +166,7 @@ const EmployerDashboard = () => {
           <Table>
             <TableHead>
               <TableRow>
+                <TableCell>Sr. No.</TableCell>
                 <TableCell>PROFILE</TableCell>
                 <TableCell>STATUS</TableCell>
                 <TableCell>ACTION</TableCell>
@@ -173,8 +174,9 @@ const EmployerDashboard = () => {
               </TableRow>
             </TableHead>
             {allEmployerInternshipsList.data.map((i) => (
-              <TableBody>
+              <TableBody key={i._id}>
                 <TableRow>
+                  <TableCell>{allEmployerInternshipsList.data.indexOf(i) + 1}</TableCell>
                   <TableCell>{i.title}</TableCell>
                   <TableCell> ACTIVE</TableCell>
                   <TableCell><Link style={{ textDecoration: "none" }} to="/Employee/Internship"><Button variant="contained" color="primary">View Applications({i.noOfApplicants})</Button></Link></TableCell>

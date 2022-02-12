@@ -27,7 +27,6 @@ import {
     digitalMarketingInternshipListReducer,
     dataScienceInternshipListReducer,
     otherInternshipListReducer,
-
     //   oneCourseDetailsReducer,
     //   frontendCourseListReducer,
     //   backendCourseListReducer,
@@ -39,7 +38,7 @@ import {
     //   allInstructorCoursesReducer,
     createInternshipReducer,
 } from "./reducers/internshipReducers";
-import { createApplicationReducer } from "./reducers/applicationReducers";
+import { createApplicationReducer, allUserApplicationsReducer } from "./reducers/applicationReducers";
 // import { adminReducer } from "./reducers/adminReducers";
 
 // import { adminLoginReducer, adminViewOrders } from "./reducers/adminReducer";
@@ -104,6 +103,7 @@ const reducer = combineReducers({
     //   allUserCourses: allUserCoursesReducer,
     //   allInstructorCourse: allInstructorCoursesReducer,
     allEmployerInternships: allEmployerInternshipsReducer,
+    allUserApplications: allUserApplicationsReducer,
     //   courseDetails: oneCourseDetailsReducer,
     //   frontendCourses: frontendCourseListReducer,
     //   backendCourses: backendCourseListReducer,

@@ -10,7 +10,7 @@ const applicationSchema = mongoose.Schema(
         internshipId: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,
-            ref: "Course",
+            ref: "Internship",
         },
         isComplete: {
             type: Boolean,
