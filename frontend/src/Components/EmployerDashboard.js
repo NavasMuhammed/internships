@@ -8,20 +8,45 @@ import {
   CardActions,
   Button,
 } from "@mui/material";
-import React from "react";
+import {
+  TableContainer,
+  TableCell,
+  Table,
+  TableBody,
+  TableHead,
+  TableRow,
+
+} from "@mui/material";
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import { allEmployerInternshipsAction } from "../actions/internshipActions";
 
-const Employee_dash = () => {
+const EmployerDashboard = () => {
+  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+  const allEmployerInternshipsList = useSelector(
+    (state) => state.allEmployerInternships.employerInternships
+  );
+  useEffect(() => {
+    console.log("All employer internships", allEmployerInternshipsList)
+    // dispatch(allEmployerInternshipsAction());
+    // console.log("Dispatched");
+  }, [dispatch]);
+
   return (
     <>
-      <Box pt={3} textAlign="center">
+      {/* <Box pt={3} textAlign="center">
         <Typography variant="h6">Dashboard</Typography>
-      </Box>
+      </Box> */}
       <Container sx={{ display: "block" }}>
-        <Card
+        {/* <Card
           variant="outlined"
           component={Paper}
           sx={{ display: "flex", m: 4 }}
@@ -84,7 +109,7 @@ const Employee_dash = () => {
                     variant="subtitle1"
                   >
                     57(
-                    {/* <CardActions> */}
+                    {/* <CardActions> 
                     <Typography
                       sx={{
                         mt: "2px",
@@ -96,7 +121,7 @@ const Employee_dash = () => {
                     >
                       View Applicants
                     </Typography>
-                    {/* </CardActions> */})
+                    {/* </CardActions> )
                   </Typography>
                   <Typography
                     sx={{ display: "flex", mx: 4 }}
@@ -132,9 +157,64 @@ const Employee_dash = () => {
               </Button>
             </CardActions>
           </Box>
-        </Card>
+        </Card> */}
+
+        <Box py={5} textAlign="center">
+          <Typography variant="h6">{userInfo.data.name} Dashboard</Typography>
+        </Box>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>PROFILE</TableCell>
+                <TableCell>STATUS</TableCell>
+                <TableCell>ACTION</TableCell>
+                <TableCell>LAST DATE TO APPLY</TableCell>
+              </TableRow>
+            </TableHead>
+            {allEmployerInternshipsList.data.map((i) => (
+              <TableBody>
+                <TableRow>
+                  <TableCell>{i.title}</TableCell>
+                  <TableCell> ACTIVE</TableCell>
+                  <TableCell><Link style={{ textDecoration: "none" }} to="/Employee/Internship"><Button variant="contained" color="primary">View Applications({i.noOfApplicants})</Button></Link></TableCell>
+                  <TableCell>{i.lastDateToApply.slice(0, 16)}</TableCell>
+
+                </TableRow>
+              </TableBody>
+            ))}
+
+          </Table>
+        </TableContainer>
+        {/* <TableRow>
+                <TableCell>Across The Globe(ATG)</TableCell>
+                <TableCell>MERN Stack Development Internship</TableCell>
+                <TableCell> 27 Dec' 21</TableCell>
+                <TableCell>107</TableCell>
+                <TableCell>
+                  In-touch
+                  <HelpOutlineOutlinedIcon fontSize="small" color="primary" />
+                </TableCell>
+                <TableCell>
+                  <DescriptionOutlinedIcon color="primary" />
+                </TableCell>
+              </TableRow> */}
+        {/* <TableRow>
+                <TableCell>Maxxed</TableCell>
+                <TableCell>Web Development Internship</TableCell>
+                <TableCell> 27 Dec' 21</TableCell>
+                <TableCell>17</TableCell>
+                <TableCell>
+                  Applied
+                  <HelpOutlineOutlinedIcon fontSize="small" color="primary" />
+                </TableCell>
+                <TableCell>
+                  <DescriptionOutlinedIcon color="primary" />
+                </TableCell>
+              </TableRow> */}
+
         {/* 2nd Card starts from here */}
-        <Card
+        {/* <Card
           variant="outlined"
           component={Paper}
           sx={{ display: "flex", m: 4 }}
@@ -235,10 +315,10 @@ const Employee_dash = () => {
               </Box>
             </CardContent>
           </Box>
-        </Card>
+        </Card> */}
 
         {/* 3nd Card starts from here */}
-        <Card
+        {/* <Card
           variant="outlined"
           component={Paper}
           sx={{ display: "flex", m: 4 }}
@@ -344,10 +424,10 @@ const Employee_dash = () => {
               </Button>
             </CardActions>
           </Box>
-        </Card>
+        </Card> */}
       </Container>
     </>
   );
 };
 
-export default Employee_dash;
+export default EmployerDashboard;

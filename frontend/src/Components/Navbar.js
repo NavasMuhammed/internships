@@ -73,18 +73,18 @@ const Navbar = () => {
           <ListItemButton component={Link} to="/login/MyApplicationCard">
             <ListItemText primary="My Application"></ListItemText>
           </ListItemButton>
-          <ListItemButton component={Link} to="/Employee/Dashboard">
-            <ListItemText primary="Employee Dashboard"></ListItemText>
+          <ListItemButton component={Link} to="/employer/dashboard">
+            <ListItemText primary="Employer Dashboard"></ListItemText>
           </ListItemButton>
-          <ListItemButton component={Link} to="/Employee/Internship">
-            <ListItemText primary="Employee Internships"></ListItemText>
+          <ListItemButton component={Link} to="/employer/applications">
+            <ListItemText primary="Employer Applications"></ListItemText>
           </ListItemButton>
-          <ListItemButton component={Link} to="/particularInternship">
+          {/* <ListItemButton component={Link} to="/particularInternship">
             <ListItemText primary="Particular Internship"></ListItemText>
           </ListItemButton>
           <ListItemButton component={Link} to="/questions">
             <ListItemText primary="Questions"></ListItemText>
-          </ListItemButton>
+          </ListItemButton> */}
         </List>
       </Drawer>
       <AppBar position="static">
@@ -158,10 +158,10 @@ const Navbar = () => {
                           // color="success"
                           // color="inherit"
                           style={{ color: "white", backgroundColor: "#23b502" }}
-                          // {...bindTrigger(popupState)}
-                          // endIcon={<ArrowDropDownOutlinedIcon fontSize="small" />
+                        // {...bindTrigger(popupState)}
+                        // endIcon={<ArrowDropDownOutlinedIcon fontSize="small" />
 
-                          // }
+                        // }
                         >
                           Register
                         </Button>

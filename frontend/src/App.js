@@ -16,7 +16,7 @@ import MyApplication from "./Components/MyApplicationTable";
 import MyApplicationCard from "./Components/MyApplicationCard";
 import AllInternships from "./Components/AllInternships";
 import { createTheme, ThemeProvider } from "@mui/material";
-import Employee_dash from "./Components/Employee_dash";
+import EmployerDashboard from "./Components/EmployerDashboard";
 import Employee_intern_dash from "./Components/Employee_intern_dash";
 import CreateInternship from "./Components/CreateInternship";
 import Profile from "./Components/Profile";
@@ -67,13 +67,13 @@ function App() {
             />
             <Route
               exact
-              path="/Employee/Dashboard"
-              element={<Employee_dash />}
+              path="/employer/dashboard"
+              element={<EmployerDashboard />}
             />
             <Route exact path="/profile" element={<Profile />} />
             <Route
               exact
-              path="/Employee/Internship"
+              path="/employer/applications"
               element={<Employee_intern_dash />}
             />
           </Routes>

@@ -7,7 +7,7 @@ import work from "./image/work.jfif";
 import job from "./image/jobs.png";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@mui/styles";
-import { allInternshipsListAction } from "../actions/internshipActions";
+import { allInternshipsListAction, allEmployerInternshipsAction } from "../actions/internshipActions";
 
 const useStyles = makeStyles((theme) => ({
   topographyStyle: {
@@ -17,10 +17,21 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   useEffect(() => {
     dispatch(allInternshipsListAction());
+    if (userInfo) {
+      dispatch(allEmployerInternshipsAction(userInfo.data._id));
+    }
     // console.log("Dispatched");
   }, [dispatch]);
+  // useEffect(() => {
+  //   // dispatch(allInternshipsListAction());
+  //   dispatch(allEmployerInternshipsAction(userInfo.data._id));
+  //   // console.log("Dispatched");
+  // }, [dispatch, userInfo]);
+
 
   return (
     <>

@@ -435,7 +435,7 @@ const ParticularInternship = (props) => {
                                 </Link> */}
                 {userInfo ? (
                   <Link
-                    to={`/questions/${item._id}`}
+                    to={`/questions/${internshipDetail._id}`}
                     style={{ textDecoration: "none" }}
                   >
                     <Grid display="flex" justifyContent="center">

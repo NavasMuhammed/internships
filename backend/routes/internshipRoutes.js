@@ -12,7 +12,7 @@ const {
     payUsingRazorpay,
     getAllOtherInternships,
     getAllInternshipsOfUser,
-    getAllInternshipsOfInstructor,
+    getAllInternshipsOfEmployer,
     // createChapter,
 } = require("../controllers/internshipControllers");
 
@@ -57,7 +57,7 @@ router.route("/oneInternship/:id").get(getInternshipById);
 router.route("/allInternships/:id").get(getAllInternshipsOfUser);
 
 // Get all Internshipss of instructor
-router.route("/allInstructorInternships/:id").get(getAllInternshipsOfInstructor);
+router.route("/allEmployerInternships/:id").get(getAllInternshipsOfEmployer);
 
 // Pay using Razorpay
 router.route("/razorpay").post(payUsingRazorpay);

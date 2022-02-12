@@ -103,6 +103,7 @@ const reducer = combineReducers({
 
     //   allUserCourses: allUserCoursesReducer,
     //   allInstructorCourse: allInstructorCoursesReducer,
+    allEmployerInternships: allEmployerInternshipsReducer,
     //   courseDetails: oneCourseDetailsReducer,
     //   frontendCourses: frontendCourseListReducer,
     //   backendCourses: backendCourseListReducer,

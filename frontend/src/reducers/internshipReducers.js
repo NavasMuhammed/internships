@@ -97,14 +97,14 @@ export const allUserInternshipsReducer = (state = { internships: [] }, action) =
 };
 
 export const allEmployerInternshipsReducer = (
-    state = { EMPLOYERINTERNSHIPs: [] },
+    state = { employerInternships: [] },
     action
 ) => {
     switch (action.type) {
         case ALL_EMPLOYER_INTERNSHIPS_REQUEST:
-            return { ...state, loading: true, EmployerInternships: [] };
+            return { ...state, loading: true, employerInternships: [] };
         case ALL_EMPLOYER_INTERNSHIPS_SUCCESS:
-            return { loading: false, EmployerInternships: action.payload };
+            return { loading: false, employerInternships: action.payload };
         case ALL_EMPLOYER_INTERNSHIPS_FAILS:
             return { loading: false, error: action.payload };
         default:
