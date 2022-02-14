@@ -21,6 +21,7 @@ import ReceiptLongRoundedIcon from "@mui/icons-material/ReceiptLongRounded";
 import HelpOutlineRoundedIcon from "@mui/icons-material/HelpOutlineRounded";
 
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Employee_intern_dash = () => {
   const [value, setvalue] = useState(0);
@@ -147,13 +148,19 @@ const Employee_intern_dash = () => {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button variant="contained" color="error">
+                  <Button variant="contained" color="error" sx={{ mr: 2 }}>
                     Reject
                   </Button>
-                  <Button variant="contained" color="primary">
+                  <Button variant="contained" color="primary" sx={{ mr: 2 }}>
                     Open Chart
                   </Button>
-                  <Button variant="contained" color="primary">
+                  <Button
+                    variant="contained"
+                    component={Link}
+                    to="/employer/ViewFullApplications"
+                    color="primary"
+                    sx={{ mr: 2 }}
+                  >
                     View Full Application
                   </Button>
                 </CardActions>
