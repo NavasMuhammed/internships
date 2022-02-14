@@ -21,7 +21,8 @@ import Employee_intern_dash from "./Components/Employee_intern_dash";
 import CreateInternship from "./Components/CreateInternship";
 import Profile from "./Components/Profile";
 import Resume from "./Components/Profile";
-import MyApplicationTable from "./Components/MyApplicationTable"
+import MyApplicationTable from "./Components/MyApplicationTable";
+import ViewFullApplications from "./Components/ViewFullApplications";
 
 const theme = createTheme({
   margin: 0,
@@ -76,6 +77,11 @@ function App() {
               exact
               path="/employer/applications"
               element={<Employee_intern_dash />}
+            />
+            <Route
+              exact
+              path="/employer/ViewFullApplications"
+              element={<ViewFullApplications />}
             />
           </Routes>
           <Footer />
