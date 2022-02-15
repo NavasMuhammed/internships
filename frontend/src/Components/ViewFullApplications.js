@@ -6,6 +6,7 @@ import {
   Container,
   Paper,
   Divider,
+  Rating,
 } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import StarIcon from "@mui/icons-material/Star";
@@ -76,10 +77,12 @@ const ViewFullApplications = () => {
           {/* Right Element of Container */}
           <Grid item xs={12} md={10}>
             <Box sx={{ m: 3, display: "flex" }}>
-              <StarIcon sx={{ color: "#D5D800" }} />
-              <StarIcon sx={{ color: "#D5D800" }} />
-              <StarIcon sx={{ color: "#D5D800" }} />
-              <StarHalfIcon sx={{ color: "#D5D800" }} />
+              <Rating
+                name="half-rating-read"
+                defaultValue={4.5}
+                precision={0.5}
+                readOnly
+              />
               <Typography
                 variant="body1"
                 color="initial"
@@ -87,10 +90,12 @@ const ViewFullApplications = () => {
               >
                 MS Excel
               </Typography>
-              <StarIcon sx={{ color: "#D5D800" }} />
-              <StarIcon sx={{ color: "#D5D800" }} />
-              <StarIcon sx={{ color: "#D5D800" }} />
-              <StarHalfIcon sx={{ color: "#D5D800" }} />
+              <Rating
+                name="half-rating-read"
+                defaultValue={1.5}
+                precision={0.5}
+                readOnly
+              />
               <Typography
                 variant="body1"
                 color="initial"
@@ -98,9 +103,12 @@ const ViewFullApplications = () => {
               >
                 Search Engine Optimization
               </Typography>
-              <StarIcon sx={{ color: "#D5D800" }} />
-              <StarIcon sx={{ color: "#D5D800" }} />
-              <StarHalfIcon sx={{ color: "#D5D800" }} />
+              <Rating
+                name="half-rating-read"
+                defaultValue={4}
+                precision={0.5}
+                readOnly
+              />
               <Typography
                 variant="body1"
                 color="initial"
@@ -108,8 +116,12 @@ const ViewFullApplications = () => {
               >
                 MS Word
               </Typography>
-              <StarIcon sx={{ color: "#D5D800" }} />
-              <StarHalfIcon sx={{ color: "#D5D800" }} />
+              <Rating
+                name="half-rating-read"
+                defaultValue={3.5}
+                precision={0.5}
+                readOnly
+              />
               <Typography
                 variant="body1"
                 color="initial"
