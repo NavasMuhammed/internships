@@ -42,11 +42,40 @@ const Resume = () => {
   const [openSkills, setOpenSkills] = useState(false);
   const [openWorksamples, setOpenWorksamples] = useState(false);
   const [openAccomplishment, setOpenAccomplishment] = useState(false);
-  const [openAddGraduation, setOpenAddGraduation] = useState(false);
 
   const [profile, setProfile] = useState({
-    email: "",
-    password: "",
+    Add_your_Education: "",
+    Add_your_College_Name: "",
+    start_year: "",
+    end_year: "",
+    job_operations: "",
+    job_organization: "",
+    job_location: "",
+    job_description: "",
+    internship_operations: "",
+    internship_organization: "",
+    internship_location: "",
+    internship_description: "",
+    POR_operations: "",
+    POR_organization: "",
+    POR_location: "",
+    POR_description: "",
+    training_operations: "",
+    training_organization: "",
+    training_location: "",
+    training_description: "",
+    projects_operations: "",
+    projects_organization: "",
+    projects_location: "",
+    projects_description: "",
+    skills: "",
+    Ratings: "",
+    work_sample_blog_link: "",
+    work_sample_github_profile: "",
+    work_sample_play_store: "",
+    work_sample_portfolio_link: "",
+    other_work_sample_link: "",
+    accomplishment_description: "",
   });
 
   let name, value;
@@ -84,10 +113,6 @@ const Resume = () => {
   const handleClickOpenAccomplishments = () => {
     setOpenAccomplishment(true);
   };
-  const handleClickOpenAddGraduation = () => {
-    setOpenEducation(false);
-    setOpenAddGraduation(true);
-  };
 
   const handleCloseEducation = () => {
     setOpenEducation(false);
@@ -115,9 +140,6 @@ const Resume = () => {
   };
   const handleCloseAccomplishments = () => {
     setOpenAccomplishment(false);
-  };
-  const handleCloseAddGraduation = () => {
-    setOpenAddGraduation(false);
   };
   return (
     <>
@@ -229,7 +251,7 @@ const Resume = () => {
                 aria-describedby="alert-dialog-slide-description"
               >
                 <DialogTitle sx={{ textAlign: "center" }}>
-                  Education
+                  Add Education
                 </DialogTitle>
                 <DialogContent>
                   <Box
@@ -239,216 +261,38 @@ const Resume = () => {
                       flexDirection: "column",
                     }}
                   >
-                    <Button
-                      startIcon={<AddIcon />}
-                      onClick={handleClickOpenAddGraduation}
-                    >
-                      Add graduation
-                    </Button>
-                    <Dialog
+                    <TextField
+                      onChange={handleChange}
+                      name="Add_your_Education"
                       fullWidth
-                      open={openAddGraduation}
-                      TransitionComponent={Transition}
-                      keepMounted
-                      onClose={handleCloseAddGraduation}
-                    >
-                      <DialogTitle sx={{ textAlign: "center" }}>
-                        Add Graduation
-                      </DialogTitle>
-                      <DialogContent>
-                        <Box>
-                          <DialogContentText>
-                            Graduation Status
-                          </DialogContentText>
-                          <FormGroup
-                            sx={{ display: "flex", flexDirection: "row" }}
-                          >
-                            <FormControlLabel
-                              control={<Checkbox />}
-                              label="Pursing"
-                            />
-                            <FormControlLabel
-                              control={<Checkbox />}
-                              label="Completed"
-                            />
-                          </FormGroup>
-                          <DialogContentText>College</DialogContentText>
-                          <TextField
-                            fullWidth
-                            label="e.g College Name"
-                            variant="standard"
-                          />
-                          <Box sx={{ display: "flex" }}>
-                            <Box sx={{ mr: 3 }}>
-                              <DialogContentText>Start year</DialogContentText>
-                              <TextField
-                                sx={{ width: 200 }}
-                                variant="standard"
-                                id="select"
-                                label="Start year"
-                                select
-                              >
-                                <MenuItem value="1997">1997</MenuItem>
-                                <MenuItem value="1998">1998</MenuItem>
-                                <MenuItem value="1999">1999</MenuItem>
-                                <MenuItem value="2000">2000</MenuItem>
-                                <MenuItem value="2001">2001</MenuItem>
-                                <MenuItem value="2002">2002</MenuItem>
-                                <MenuItem value="2003">2003</MenuItem>
-                                <MenuItem value="2004">2004</MenuItem>
-                                <MenuItem value="2005">2005</MenuItem>
-                              </TextField>
-                            </Box>
-                            <Box>
-                              <DialogContentText>End year</DialogContentText>
-                              <TextField
-                                sx={{ width: 200 }}
-                                variant="standard"
-                                id="select"
-                                label="Start year"
-                                select
-                              >
-                                <MenuItem value="1997">1997</MenuItem>
-                                <MenuItem value="1998">1998</MenuItem>
-                                <MenuItem value="1999">1999</MenuItem>
-                                <MenuItem value="2000">2000</MenuItem>
-                                <MenuItem value="2001">2001</MenuItem>
-                                <MenuItem value="2002">2002</MenuItem>
-                                <MenuItem value="2003">2003</MenuItem>
-                                <MenuItem value="2004">2004</MenuItem>
-                                <MenuItem value="2005">2005</MenuItem>
-                              </TextField>
-                            </Box>
-                          </Box>
-                          <Box sx={{ display: "flex", flexDirection: "row" }}>
-                            <Box sx={{ mr: 2 }}>
-                              <DialogContentText>Degree</DialogContentText>
-                              <TextField
-                                fullWidth
-                                label="e.g Computer Science"
-                                variant="standard"
-                              />
-                            </Box>
-                            <Box>
-                              <DialogContentText>Stream</DialogContentText>
-                              <TextField
-                                fullWidth
-                                label="e.g B.Sc(Honours)"
-                                variant="standard"
-                              />
-                            </Box>
-                          </Box>
-                          <Box
-                            sx={{
-                              flexDirection: "column",
-                              m: 2,
-                              backgroundColor: "#F8F8F8",
-                              border: "solid #DDD 1px",
-                              p: 2,
-                            }}
-                          >
-                            <DialogContentText
-                              sx={{
-                                mb: 1,
-                              }}
-                            >
-                              Example: If your degree is B.Sc in Chemistry, then
-                              select Bachelor of Science (B.Sc) in degree and
-                              Chemistry in streams.
-                            </DialogContentText>
-                            <DialogContentText>
-                              If you can't find your degree, check for typos or
-                              different ways of writing your degree or choose
-                              from the closest available. Write to
-                              support@internshala.com if you are pursuing a
-                              degree not available in the list.
-                            </DialogContentText>
-                          </Box>
-                          <Box sx={{ display: "flex" }}>
-                            <Box sx={{ mr: 3 }}>
-                              <DialogContentText>
-                                Performances
-                              </DialogContentText>
-                              <TextField
-                                sx={{ width: 200 }}
-                                variant="standard"
-                                id="select"
-                                label="Percentage(Optional)"
-                                select
-                              >
-                                <MenuItem value="CGPA(Grade of 10)">
-                                  CGPA(Grade of 10)
-                                </MenuItem>
-                                <MenuItem value="CGPA(Grade of 9)">
-                                  CGPA(Grade of 9)
-                                </MenuItem>
-                                <MenuItem value="CGPA(Grade of 8)">
-                                  CGPA(Grade of 8)
-                                </MenuItem>
-                                <MenuItem value="CGPA(Grade of 7)">
-                                  CGPA(Grade of 7)
-                                </MenuItem>
-                                <MenuItem value="CGPA(Grade of 6)">
-                                  CGPA(Grade of 6)
-                                </MenuItem>
-                              </TextField>
-                            </Box>
-                            <Box>
-                              <DialogContentText>Percentage</DialogContentText>
-                              <TextField
-                                sx={{ width: 200 }}
-                                variant="standard"
-                                label="Percentage(Optional)"
-                              ></TextField>
-                            </Box>
-                          </Box>
-                        </Box>
-                      </DialogContent>
-                      <DialogActions>
-                        <Button
-                          onClick={handleCloseAddGraduation}
-                          variant="outlined"
-                        >
-                          Save
-                        </Button>
-                        <Button onClick={handleCloseAddGraduation}>
-                          Close
-                        </Button>
-                      </DialogActions>
-                    </Dialog>
-                    <Button
-                      startIcon={<AddIcon />}
-                      // onClick={handleClickOpen}
-                    >
-                      Add senior secondary(XII)
-                    </Button>
-                    <Button
-                      startIcon={<AddIcon />}
-                      // onClick={handleClickOpen}
-                    >
-                      Add secondary(X)
-                    </Button>
-                    <Button
-                      startIcon={<AddIcon />}
-                      // onClick={handleClickOpen}
-                    >
-                      Add post Graduation
-                    </Button>
-                    <Button
-                      startIcon={<AddIcon />}
-                      // onClick={handleClickOpen}
-                    >
-                      Add diploma
-                    </Button>
-                    <Button
-                      startIcon={<AddIcon />}
-                      // onClick={handleClickOpen}
-                    >
-                      Add PhD
-                    </Button>
+                      label="Add your Education"
+                      variant="standard"
+                    />
+                    <TextField
+                      onChange={handleChange}
+                      name="Add_your_College_Name"
+                      fullWidth
+                      label="Add your College Name"
+                      variant="standard"
+                    />
+                    <TextField
+                      onChange={handleChange}
+                      name="start_year"
+                      fullWidth
+                      label="Start year"
+                      variant="standard"
+                    />
+                    <TextField
+                      onChange={handleChange}
+                      name="end_year"
+                      fullWidth
+                      label="End year"
+                      variant="standard"
+                    />
                   </Box>
                 </DialogContent>
                 <DialogActions>
+                  <Button>Add</Button>
                   <Button onClick={handleCloseEducation}>Close</Button>
                 </DialogActions>
               </Dialog>
@@ -497,6 +341,8 @@ const Resume = () => {
                       Profile
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="job_operation"
                       fullWidth
                       label="e.g Operations"
                       variant="standard"
@@ -505,6 +351,8 @@ const Resume = () => {
                       Orgarnization
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="job_orgarnization"
                       fullWidth
                       label="e.g Internshala"
                       variant="standard"
@@ -513,6 +361,8 @@ const Resume = () => {
                       Location
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="job_location"
                       fullWidth
                       label="e.g Mumbai"
                       variant="standard"
@@ -527,6 +377,8 @@ const Resume = () => {
                       Description
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="job_description"
                       fullWidth
                       multiline
                       rows={8}
@@ -587,6 +439,8 @@ const Resume = () => {
                       Profile
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="internship_operations"
                       fullWidth
                       label="e.g Operations"
                       variant="standard"
@@ -595,6 +449,8 @@ const Resume = () => {
                       Orgarnization
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="internship_organization"
                       fullWidth
                       label="e.g Internshala"
                       variant="standard"
@@ -603,6 +459,8 @@ const Resume = () => {
                       Location
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="internship_location"
                       fullWidth
                       label="e.g Mumbai"
                       variant="standard"
@@ -617,6 +475,8 @@ const Resume = () => {
                       Description
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="internship_description"
                       fullWidth
                       multiline
                       rows={8}
@@ -674,6 +534,8 @@ const Resume = () => {
                       Profile
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="POR_operations"
                       fullWidth
                       label="e.g Operations"
                       variant="standard"
@@ -682,6 +544,8 @@ const Resume = () => {
                       Orgarnization
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="POR_organization"
                       fullWidth
                       label="e.g Internshala"
                       variant="standard"
@@ -690,6 +554,8 @@ const Resume = () => {
                       Location
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="POR_location"
                       fullWidth
                       label="e.g Mumbai"
                       variant="standard"
@@ -704,6 +570,8 @@ const Resume = () => {
                       Description
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="POR_description"
                       fullWidth
                       multiline
                       rows={8}
@@ -764,6 +632,8 @@ const Resume = () => {
                       Profile
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="training_operations"
                       fullWidth
                       label="e.g Operations"
                       variant="standard"
@@ -772,6 +642,8 @@ const Resume = () => {
                       Orgarnization
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="training_organization"
                       fullWidth
                       label="e.g Internshala"
                       variant="standard"
@@ -780,6 +652,8 @@ const Resume = () => {
                       Location
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="training_location"
                       fullWidth
                       label="e.g Mumbai"
                       variant="standard"
@@ -794,6 +668,8 @@ const Resume = () => {
                       Description
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="training_description"
                       fullWidth
                       multiline
                       rows={8}
@@ -854,6 +730,8 @@ const Resume = () => {
                       Profile
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="projects_operations"
                       fullWidth
                       label="e.g Operations"
                       variant="standard"
@@ -862,6 +740,8 @@ const Resume = () => {
                       Orgarnization
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="projects_organization"
                       fullWidth
                       label="e.g Internshala"
                       variant="standard"
@@ -870,6 +750,8 @@ const Resume = () => {
                       Location
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="projects_location"
                       fullWidth
                       label="e.g Mumbai"
                       variant="standard"
@@ -884,6 +766,8 @@ const Resume = () => {
                       Description
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="projects_description"
                       fullWidth
                       multiline
                       rows={8}
@@ -939,8 +823,20 @@ const Resume = () => {
                       Add Skill
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="skills"
                       fullWidth
                       label="e.g Web Development"
+                      variant="standard"
+                    />
+                    <DialogContentText color="initial">
+                      Add Rating to Skills
+                    </DialogContentText>
+                    <TextField
+                      onChange={handleChange}
+                      name="Ratings"
+                      fullWidth
+                      label="e.g 2.5/5 OR 4/5"
                       variant="standard"
                     />
                   </Box>
@@ -997,6 +893,8 @@ const Resume = () => {
                       Blog link
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="work_sample_blog_link"
                       fullWidth
                       label="http://myblog.com"
                       variant="standard"
@@ -1005,6 +903,8 @@ const Resume = () => {
                       GitHub profile
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="work_sample_github_profile"
                       fullWidth
                       label="http://github.com/my_profile"
                       variant="standard"
@@ -1013,6 +913,8 @@ const Resume = () => {
                       Play store developer A/c(public link)
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="work_sample_play_store"
                       fullWidth
                       label="http://play.google.com/store/apps/developer?id=myapps"
                       variant="standard"
@@ -1021,6 +923,8 @@ const Resume = () => {
                       Behance portfolio link
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="work_sample_portfolio_link"
                       fullWidth
                       label="http://behance.net/my_profile"
                       variant="standard"
@@ -1035,6 +939,8 @@ const Resume = () => {
                       the link here.
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="other_work_sample_link"
                       fullWidth
                       label="https://myworksample.com"
                       variant="outlined"
@@ -1101,6 +1007,8 @@ const Resume = () => {
                       or any interests/hobbies you have pursued.
                     </DialogContentText>
                     <TextField
+                      onChange={handleChange}
+                      name="accomplishment_description"
                       fullWidth
                       multiline
                       rows={8}
