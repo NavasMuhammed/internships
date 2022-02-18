@@ -9,8 +9,6 @@ import {
   Rating,
 } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import StarIcon from "@mui/icons-material/Star";
-import StarHalfIcon from "@mui/icons-material/StarHalf";
 
 const ViewFullApplications = () => {
   return (

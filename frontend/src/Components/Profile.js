@@ -388,6 +388,7 @@ const Resume = () => {
                   </Box>
                 </DialogContent>
                 <DialogActions>
+                  <Button>Add</Button>
                   <Button onClick={handleCloseJobs}>Close</Button>
                 </DialogActions>
               </Dialog>
@@ -486,6 +487,7 @@ const Resume = () => {
                   </Box>
                 </DialogContent>
                 <DialogActions>
+                  <Button>Add</Button>
                   <Button onClick={handleCloseInternships}>Close</Button>
                 </DialogActions>
               </Dialog>
@@ -581,6 +583,7 @@ const Resume = () => {
                   </Box>
                 </DialogContent>
                 <DialogActions>
+                  <Button>Add</Button>
                   <Button onClick={handleClosePOR}>Close</Button>
                 </DialogActions>
               </Dialog>
@@ -679,6 +682,7 @@ const Resume = () => {
                   </Box>
                 </DialogContent>
                 <DialogActions>
+                  <Button>Add</Button>
                   <Button onClick={handleCloseTrainCourse}>Close</Button>
                 </DialogActions>
               </Dialog>
@@ -777,6 +781,7 @@ const Resume = () => {
                   </Box>
                 </DialogContent>
                 <DialogActions>
+                  <Button>Add</Button>
                   <Button onClick={handleCloseAcademics}>Close</Button>
                 </DialogActions>
               </Dialog>
@@ -842,6 +847,7 @@ const Resume = () => {
                   </Box>
                 </DialogContent>
                 <DialogActions>
+                  <Button>Add</Button>
                   <Button onClick={handleCloseSkills}>Close</Button>
                 </DialogActions>
               </Dialog>
@@ -1018,6 +1024,7 @@ const Resume = () => {
                   </Box>
                 </DialogContent>
                 <DialogActions>
+                  <Button>Add</Button>
                   <Button onClick={handleCloseAccomplishments}>Close</Button>
                 </DialogActions>
               </Dialog>
