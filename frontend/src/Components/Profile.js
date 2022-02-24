@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   Typography,
@@ -22,6 +22,7 @@ import {
   FormControlLabel,
   Checkbox,
   MenuItem,
+  Rating
 } from "@mui/material";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -42,6 +43,94 @@ const Resume = () => {
   const [openSkills, setOpenSkills] = useState(false);
   const [openWorksamples, setOpenWorksamples] = useState(false);
   const [openAccomplishment, setOpenAccomplishment] = useState(false);
+
+
+  const [education, setEducation] = useState([])
+  const [jobs, setJobs] = useState([])
+  const [internships, setInternships] = useState([])
+  const [positions, setPositions] = useState([])
+  const [courses, setCourses] = useState([])
+  const [projects, setProjects] = useState([])
+  const [skills, setSkills] = useState([])
+  const [links, setLinks] = useState([])
+  const [additionalDetails, setadditionalDetails] = useState([])
+  // SINGLE FORMS
+  const [PORText, setPORText] = useState("")
+  const [additionalDetailsText, setAdditionalDetailsText] = useState("")
+  const [skillsInput, setSkillsInput] = useState({
+    skill: "",
+    rating: 0
+  })
+  const [educationInput, setEducationInput] = useState({
+    title: "",
+    institute: "",
+    startYear: "",
+    endYear: ""
+  })
+  const [jobsInput, setJobsInput] = useState({
+    profile: "",
+    organization: "",
+    location: "",
+    description: "",
+    startDate: "",
+    endDate: ""
+  })
+  const [internshipsInput, setInternshipsInput] = useState({
+    profile: "",
+    organization: "",
+    location: "",
+    description: "",
+    startDate: "",
+    endDate: ""
+  })
+  const [projectsInput, setProjectsInput] = useState({
+    title: "",
+    startMonth: "",
+    endMonth: "",
+    description: "",
+    link: ""
+  })
+  const [courseInput, setCourseInput] = useState({
+    title: "",
+    organization: "",
+    location: "",
+    startMonth: "",
+    endMonth: "",
+    description: "",
+  })
+  const [linksInput, setlinksInput] = useState({
+    blog: "",
+    github: "",
+    linkedin: "",
+    behance: "",
+    other: ""
+  })
+  // education: education------------------------------------------DONE,
+  // jobs: jobs-----------------------------------------------------DONE,
+  // internships: internships-----------------------------------------------DONE,
+  // positions: positions,-----------------------------------------DONE
+  // courses: courses-----------------------------------------------------DONE,
+  // projects: projects----------------------------------------------DONE,
+  // skills: skills,------------------------------------DONE
+  // links: links,
+  // additionalDetails: additionalDetails-------------------------------------------DONE
+  const [profile2, setProfile2] = useState({
+    education: education,
+    jobs: jobs,
+    internships: internships,
+    positions: positions,
+    courses: courses,
+    projects: projects,
+    skills: skills,
+    links: links,
+    additionalDetails: additionalDetails
+  })
+
+  useEffect(() => {
+    if (profile2) {
+      console.log(profile2);
+    }
+  }, [profile2])
 
   const [profile, setProfile] = useState({
     Add_your_Education: "",
@@ -80,7 +169,7 @@ const Resume = () => {
 
   let name, value;
   const handleChange = (e) => {
-    console.log(profile);
+    // console.log(profile);
     name = e.target.name;
     value = e.target.value;
     setProfile({ ...profile, [name]: value });
@@ -175,6 +264,7 @@ const Resume = () => {
         </Grid>
       </Container>
 
+      {/* =============================EDUCATION================================== */}
       <Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
         <Divider variant="middle" />
@@ -189,59 +279,39 @@ const Resume = () => {
           {/* Right Element of Container */}
           <Grid item xs={12} md={9}>
             <Box sx={{ m: 3 }}>
-              <Typography variant="h6" color="initial" sx={{ display: "flex" }}>
-                Master of Science(M.S),Information Technology
-                <Box sx={{ ml: 30 }}>
-                  <EditIcon sx={{ mr: 2 }}></EditIcon>
-                  <DeleteIcon></DeleteIcon>
-                </Box>
-              </Typography>
-              <Typography
-                variant="subtitle2"
-                color="initial"
-                sx={{ color: "#666" }}
-              >
-                Ramnarain Ruia College
-              </Typography>
-              <Typography
-                variant="subtitle2"
-                color="initial"
-                sx={{ color: "#666" }}
-              >
-                2020-2022
-              </Typography>
+              {education.map((e) => (
+                <>
+                  <Typography variant="h6" color="initial" sx={{ display: "flex" }}>
+                    {e.title}
+                    <Box sx={{ ml: 30 }}>
+                      <EditIcon sx={{ mr: 2 }}></EditIcon>
+                      <DeleteIcon></DeleteIcon>
+                    </Box>
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    {e.institute}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    {e.startYear} to {e.endYear}
+                  </Typography>
+                </>
+              ))}
 
-              <Typography
-                variant="h6"
-                color="initial"
-                sx={{ display: "flex", mt: 2 }}
-              >
-                Bachelor of Science(B.S),Information Technology
-                <Box sx={{ pl: 30 }}>
-                  <EditIcon sx={{ mr: 2 }}></EditIcon>
-                  <DeleteIcon></DeleteIcon>
-                </Box>
-              </Typography>
-              <Typography
-                variant="subtitle2"
-                color="initial"
-                sx={{ color: "#666" }}
-              >
-                Bhavna Trust Junior and Degree College
-              </Typography>
-              <Typography
-                variant="subtitle2"
-                color="initial"
-                sx={{ color: "#666" }}
-              >
-                2016-2019
-              </Typography>
               <Button
                 startIcon={<AddIcon />}
                 onClick={handleClickOpenEducation}
               >
                 Add Education
               </Button>
+
               <Dialog
                 fullWidth
                 open={openEducation}
@@ -262,37 +332,51 @@ const Resume = () => {
                     }}
                   >
                     <TextField
-                      onChange={handleChange}
-                      name="Add_your_Education"
+                      // onChange={handleChange}
+                      // name="Add_your_Education"
                       fullWidth
-                      label="Add your Education"
+                      label="Title"
+                      value={educationInput.title}
+                      placeholder="Eg, B.Tech/ B.Sc"
                       variant="standard"
+                      onChange={e => { setEducationInput({ ...educationInput, title: e.target.value }); console.log(educationInput) }}
                     />
                     <TextField
-                      onChange={handleChange}
-                      name="Add_your_College_Name"
+                      // onChange={handleChange}
+                      // name="Add_your_College_Name"
                       fullWidth
-                      label="Add your College Name"
+                      label="Institute Name"
+                      placeholder="Institute Name"
                       variant="standard"
+                      value={educationInput.institute}
+                      onChange={e => { setEducationInput({ ...educationInput, institute: e.target.value }); console.log(educationInput) }}
                     />
+                    <br />
+                    Start Year
                     <TextField
-                      onChange={handleChange}
-                      name="start_year"
+                      // onChange={handleChange}
+                      // name="start_year"
                       fullWidth
-                      label="Start year"
+                      value={educationInput.startYear}
                       variant="standard"
+                      type="month"
+                      onChange={e => { setEducationInput({ ...educationInput, startYear: e.target.value }); console.log(educationInput) }}
                     />
+                    <br />
+                    End Year
                     <TextField
-                      onChange={handleChange}
-                      name="end_year"
+                      // onChange={handleChange}
+                      // name="end_year"
                       fullWidth
-                      label="End year"
+                      value={educationInput.endYear}
+                      type="month"
                       variant="standard"
+                      onChange={e => { setEducationInput({ ...educationInput, endYear: e.target.value }); console.log(educationInput) }}
                     />
                   </Box>
                 </DialogContent>
                 <DialogActions>
-                  <Button>Add</Button>
+                  <Button onClick={() => { education.push(educationInput); console.log(education); setProfile2({ ...profile2, education: education }); setOpenEducation(false); console.log(profile2); setEducationInput({ title: "", institute: "", startYear: "", endYear: "" }) }}>Add</Button>
                   <Button onClick={handleCloseEducation}>Close</Button>
                 </DialogActions>
               </Dialog>
@@ -301,6 +385,7 @@ const Resume = () => {
         </Grid>
       </Container>
 
+      {/* ===================================JOBS================================== */}
       <Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
         <Divider variant="middle" />
@@ -315,6 +400,46 @@ const Resume = () => {
           {/* Right Element of Container */}
           <Grid item xs={12} md={9}>
             <Box sx={{ m: 3 }}>
+              {jobs.map((j) => (
+                <>
+                  <Typography variant="h6" color="initial" sx={{ display: "flex" }}>
+                    {j.profile}
+                    <Box sx={{ ml: 30 }}>
+                      <EditIcon sx={{ mr: 2 }}></EditIcon>
+                      <DeleteIcon></DeleteIcon>
+                    </Box>
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    {j.organization}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    {j.location}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    {j.startDate} to {j.endDate}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    {j.description}
+
+                  </Typography>
+                </>
+              ))}
               <Button startIcon={<AddIcon />} onClick={handleClickOpenJobs}>
                 Add Jobs
               </Button>
@@ -337,12 +462,15 @@ const Resume = () => {
                       flexDirection: "column",
                     }}
                   >
+
                     <DialogContentText color="initial">
                       Profile
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="job_operation"
+                      onChange={(e) => { setJobsInput({ ...jobsInput, profile: e.target.value }) }}
+                      value={jobsInput.profile}
+                      // onChange={handleChange}
+                      // name="job_operation"
                       fullWidth
                       label="e.g Operations"
                       variant="standard"
@@ -351,8 +479,10 @@ const Resume = () => {
                       Orgarnization
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="job_orgarnization"
+                      // onChange={handleChange}
+                      // name="job_orgarnization"
+                      onChange={(e) => { setJobsInput({ ...jobsInput, organization: e.target.value }) }}
+                      value={jobsInput.organization}
                       fullWidth
                       label="e.g Internshala"
                       variant="standard"
@@ -361,33 +491,61 @@ const Resume = () => {
                       Location
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="job_location"
+                      // onChange={handleChange}
+                      // name="job_location"
+                      onChange={(e) => { setJobsInput({ ...jobsInput, location: e.target.value }) }}
+                      value={jobsInput.location}
                       fullWidth
                       label="e.g Mumbai"
                       variant="standard"
                     />
-                    <FormGroup>
+                    {/* <FormGroup>
                       <FormControlLabel
                         control={<Checkbox />}
                         label="Is work from home"
                       />
-                    </FormGroup>
+                    </FormGroup> */}
                     <DialogContentText color="initial">
                       Description
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="job_description"
+                      // onChange={handleChange}
+                      // name="job_description"
+                      onChange={(e) => { setJobsInput({ ...jobsInput, description: e.target.value }) }}
+                      value={jobsInput.description}
                       fullWidth
                       multiline
-                      rows={8}
+                      rows={4}
                       label="Short description of your Work"
                       variant="outlined"
+                    />
+                    <DialogContentText color="initial">
+                      Start Date
+                    </DialogContentText>
+                    <TextField
+                      // onChange={handleChange}
+                      // name="job_description"
+                      onChange={(e) => { setJobsInput({ ...jobsInput, startDate: e.target.value }) }}
+                      value={jobsInput.startDate}
+                      fullWidth
+                      type="month"
+                    />
+                    <DialogContentText color="initial">
+                      End Date
+                    </DialogContentText>
+                    <TextField
+                      // onChange={handleChange}
+                      // name="job_description"
+                      onChange={(e) => { setJobsInput({ ...jobsInput, endDate: e.target.value }) }}
+                      value={jobsInput.endDate}
+                      fullWidth
+                      type="month"
                     />
                   </Box>
                 </DialogContent>
                 <DialogActions>
+                  <Button onClick={() => { jobs.push(jobsInput); console.log(jobs); setProfile2({ ...profile2, jobs: jobs }); setOpenJobs(false); console.log(profile2); setJobsInput({ profile: "", organization: "", location: "", description: "", startDate: "", endDate: "" }) }}>Add</Button>
+
                   <Button onClick={handleCloseJobs}>Close</Button>
                 </DialogActions>
               </Dialog>
@@ -396,6 +554,7 @@ const Resume = () => {
         </Grid>
       </Container>
 
+      {/* ============================================INTERNSHIPS=============================================== */}
       <Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
         <Divider variant="middle" />
@@ -410,6 +569,46 @@ const Resume = () => {
           {/* Right Element of Container */}
           <Grid item xs={12} md={9}>
             <Box sx={{ m: 3 }}>
+              {internships.map((i) => (
+                <>
+                  <Typography variant="h6" color="initial" sx={{ display: "flex" }}>
+                    {i.profile}
+                    <Box sx={{ ml: 30 }}>
+                      <EditIcon sx={{ mr: 2 }}></EditIcon>
+                      <DeleteIcon></DeleteIcon>
+                    </Box>
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    {i.organization}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    {i.location}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    {i.startDate} to {i.endDate}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    {i.description}
+
+                  </Typography>
+                </>
+              ))}
               <Button
                 startIcon={<AddIcon />}
                 onClick={handleClickOpenInternships}
@@ -439,18 +638,22 @@ const Resume = () => {
                       Profile
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="internship_operations"
+                      onChange={(e) => { setInternshipsInput({ ...internshipsInput, profile: e.target.value }) }}
+                      value={internshipsInput.profile}
+                      // onChange={handleChange}
+                      // name="job_operation"
                       fullWidth
-                      label="e.g Operations"
+                      label="e.g Web Developer"
                       variant="standard"
                     />
                     <DialogContentText color="initial">
                       Orgarnization
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="internship_organization"
+                      // onChange={handleChange}
+                      // name="job_orgarnization"
+                      onChange={(e) => { setInternshipsInput({ ...internshipsInput, organization: e.target.value }) }}
+                      value={internshipsInput.organization}
                       fullWidth
                       label="e.g Internshala"
                       variant="standard"
@@ -459,33 +662,62 @@ const Resume = () => {
                       Location
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="internship_location"
+                      // onChange={handleChange}
+                      // name="job_location"
+                      onChange={(e) => { setInternshipsInput({ ...internshipsInput, location: e.target.value }) }}
+                      value={internshipsInput.location}
                       fullWidth
                       label="e.g Mumbai"
                       variant="standard"
                     />
-                    <FormGroup>
+                    {/* <FormGroup>
                       <FormControlLabel
                         control={<Checkbox />}
                         label="Is work from home"
                       />
-                    </FormGroup>
+                    </FormGroup> */}
                     <DialogContentText color="initial">
                       Description
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="internship_description"
+                      // onChange={handleChange}
+                      // name="job_description"
+                      onChange={(e) => { setInternshipsInput({ ...internshipsInput, description: e.target.value }) }}
+                      value={internshipsInput.description}
                       fullWidth
                       multiline
                       rows={8}
                       label="Short description of your Work"
                       variant="outlined"
                     />
+                    <DialogContentText color="initial">
+                      Start Date
+                    </DialogContentText>
+                    <TextField
+                      // onChange={handleChange}
+                      // name="job_description"
+                      onChange={(e) => { setInternshipsInput({ ...internshipsInput, startDate: e.target.value }) }}
+                      value={internshipsInput.startDate}
+                      fullWidth
+                      type="month"
+                      rows={8}
+                    />
+                    <DialogContentText color="initial">
+                      End Date
+                    </DialogContentText>
+                    <TextField
+                      // onChange={handleChange}
+                      // name="job_description"
+                      onChange={(e) => { setInternshipsInput({ ...internshipsInput, endDate: e.target.value }) }}
+                      value={internshipsInput.endDate}
+                      fullWidth
+                      type="month"
+                    />
                   </Box>
                 </DialogContent>
                 <DialogActions>
+                  <Button onClick={() => { internships.push(internshipsInput); console.log(internships); setProfile2({ ...profile2, internships: internships }); setOpenInternships(false); console.log(profile2); setInternshipsInput({ profile: "", organization: "", location: "", description: "", startDate: "", endDate: "" }) }}>Add</Button>
+
                   <Button onClick={handleCloseInternships}>Close</Button>
                 </DialogActions>
               </Dialog>
@@ -494,6 +726,7 @@ const Resume = () => {
         </Grid>
       </Container>
 
+      {/* ===========================POSITIONS============================ */}
       <Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
         <Divider variant="middle" />
@@ -508,6 +741,12 @@ const Resume = () => {
           {/* Right Element of Container */}
           <Grid item xs={12} md={9}>
             <Box sx={{ m: 3 }}>
+              {positions.map((d) => (
+                <p key={positions.indexOf(d)}>
+                  <p>{positions.indexOf(d) + 1}) {d}</p>
+                  <br />
+                </p>
+              ))}
               <Button startIcon={<AddIcon />} onClick={handleClickOpenPOR}>
                 Add Position of Responsibility
               </Button>
@@ -530,57 +769,26 @@ const Resume = () => {
                       flexDirection: "column",
                     }}
                   >
+
                     <DialogContentText color="initial">
-                      Profile
+                      Add any Position of Responsibility that you have handled
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="POR_operations"
-                      fullWidth
-                      label="e.g Operations"
-                      variant="standard"
-                    />
-                    <DialogContentText color="initial">
-                      Orgarnization
-                    </DialogContentText>
-                    <TextField
-                      onChange={handleChange}
-                      name="POR_organization"
-                      fullWidth
-                      label="e.g Internshala"
-                      variant="standard"
-                    />
-                    <DialogContentText color="initial">
-                      Location
-                    </DialogContentText>
-                    <TextField
-                      onChange={handleChange}
-                      name="POR_location"
-                      fullWidth
-                      label="e.g Mumbai"
-                      variant="standard"
-                    />
-                    <FormGroup>
-                      <FormControlLabel
-                        control={<Checkbox />}
-                        label="Is work from home"
-                      />
-                    </FormGroup>
-                    <DialogContentText color="initial">
-                      Description
-                    </DialogContentText>
-                    <TextField
-                      onChange={handleChange}
-                      name="POR_description"
                       fullWidth
                       multiline
                       rows={8}
+                      value={PORText}
                       label="Short description of your Work"
                       variant="outlined"
+                      onChange={(e) => { setPORText(e.target.value); console.log(PORText) }}
+
                     />
                   </Box>
                 </DialogContent>
+
+
                 <DialogActions>
+                  <Button onClick={() => { setPositions([...positions, PORText]); console.log("POR", positions); setOpenPOR(false); setPORText(""); setProfile2({ ...profile2, positions: positions }) }}>Add</Button>
                   <Button onClick={handleClosePOR}>Close</Button>
                 </DialogActions>
               </Dialog>
@@ -589,6 +797,7 @@ const Resume = () => {
         </Grid>
       </Container>
 
+      {/* =====================================COURSES=========================================== */}
       <Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
         <Divider variant="middle" />
@@ -603,6 +812,48 @@ const Resume = () => {
           {/* Right Element of Container */}
           <Grid item xs={12} md={9}>
             <Box sx={{ m: 3 }}>
+              {courses.map((c) => (
+                <>
+                  <Typography variant="h6" color="initial" sx={{ display: "flex" }}>
+                    {c.title}
+                    <Box sx={{ ml: 30 }}>
+                      <EditIcon sx={{ mr: 2 }}></EditIcon>
+                      <DeleteIcon></DeleteIcon>
+                    </Box>
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    {c.organization}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    {c.location}
+                  </Typography>
+
+
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    {c.startMonth} to {c.endMonth}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    {c.description}
+
+                  </Typography>
+                </>
+              ))}
               <Button
                 startIcon={<AddIcon />}
                 onClick={handleClickOpenTrainCourse}
@@ -629,21 +880,21 @@ const Resume = () => {
                     }}
                   >
                     <DialogContentText color="initial">
-                      Profile
+                      Title
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="training_operations"
+                      onChange={e => { setCourseInput({ ...courseInput, title: e.target.value }) }}
+                      value={courseInput.title}
                       fullWidth
-                      label="e.g Operations"
+                      label="e.g Machine Learning"
                       variant="standard"
                     />
                     <DialogContentText color="initial">
                       Orgarnization
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="training_organization"
+                      onChange={e => { setCourseInput({ ...courseInput, organization: e.target.value }) }}
+                      value={courseInput.organization}
                       fullWidth
                       label="e.g Internshala"
                       variant="standard"
@@ -652,24 +903,38 @@ const Resume = () => {
                       Location
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="training_location"
+                      onChange={e => { setCourseInput({ ...courseInput, location: e.target.value }) }}
+                      value={courseInput.location}
                       fullWidth
                       label="e.g Mumbai"
                       variant="standard"
                     />
-                    <FormGroup>
-                      <FormControlLabel
-                        control={<Checkbox />}
-                        label="Is work from home"
-                      />
-                    </FormGroup>
+                    <DialogContentText color="initial">
+                      Start Month
+                    </DialogContentText>
+                    <TextField
+                      onChange={e => { setCourseInput({ ...courseInput, startMonth: e.target.value }) }}
+                      value={courseInput.startMonth}
+                      type="month"
+                      fullWidth
+                      variant="standard"
+                    />
+                    <DialogContentText color="initial">
+                      End Month
+                    </DialogContentText>
+                    <TextField
+                      onChange={e => { setCourseInput({ ...courseInput, endMonth: e.target.value }) }}
+                      value={courseInput.endMonth}
+                      type="month"
+                      fullWidth
+                      variant="standard"
+                    />
                     <DialogContentText color="initial">
                       Description
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="training_description"
+                      onChange={e => { setCourseInput({ ...courseInput, description: e.target.value }) }}
+                      value={courseInput.description}
                       fullWidth
                       multiline
                       rows={8}
@@ -679,6 +944,17 @@ const Resume = () => {
                   </Box>
                 </DialogContent>
                 <DialogActions>
+                  <Button onClick={() => {
+                    courses.push(courseInput); console.log(courses); setProfile2({ ...profile2, courses: courses }); setOpenTrainCourse(false); console.log(profile2); setCourseInput({
+                      title: "",
+                      organization: "",
+                      location: "",
+                      startMonth: "",
+                      endMonth: "",
+                      description: "",
+                    })
+                  }}>Add</Button>
+
                   <Button onClick={handleCloseTrainCourse}>Close</Button>
                 </DialogActions>
               </Dialog>
@@ -687,6 +963,7 @@ const Resume = () => {
         </Grid>
       </Container>
 
+      {/* ===============================PROJECTS============================================== */}
       <Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
         <Divider variant="middle" />
@@ -701,6 +978,40 @@ const Resume = () => {
           {/* Right Element of Container */}
           <Grid item xs={12} md={9}>
             <Box sx={{ m: 3 }}>
+              {projects.map((p) => (
+                <>
+                  <Typography variant="h6" color="initial" sx={{ display: "flex" }}>
+                    {p.title}
+                    <Box sx={{ ml: 30 }}>
+                      <EditIcon sx={{ mr: 2 }}></EditIcon>
+                      <DeleteIcon></DeleteIcon>
+                    </Box>
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    <a href={p.link}>{p.link}</a>
+                  </Typography>
+
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    {p.startMonth} to {p.endMonth}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="initial"
+                    sx={{ color: "#666" }}
+                  >
+                    {p.description}
+
+                  </Typography>
+                </>
+              ))}
               <Button
                 startIcon={<AddIcon />}
                 onClick={handleClickOpenAcademics}
@@ -727,56 +1038,64 @@ const Resume = () => {
                     }}
                   >
                     <DialogContentText color="initial">
-                      Profile
+                      Title
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="projects_operations"
+                      // onChange={handleChange}
+                      // name="projects_operations"
+                      onChange={e => { setProjectsInput({ ...projectsInput, title: e.target.value }) }}
+                      value={projectsInput.title}
                       fullWidth
                       label="e.g Operations"
                       variant="standard"
                     />
                     <DialogContentText color="initial">
-                      Orgarnization
+                      Start Month
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="projects_organization"
+                      onChange={e => { setProjectsInput({ ...projectsInput, startMonth: e.target.value }) }}
+                      value={projectsInput.startMonth}
+                      type="month"
                       fullWidth
-                      label="e.g Internshala"
                       variant="standard"
                     />
                     <DialogContentText color="initial">
-                      Location
+                      End Month
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="projects_location"
+                      onChange={e => { setProjectsInput({ ...projectsInput, endMonth: e.target.value }) }}
+                      value={projectsInput.endMonth}
+                      type="month"
                       fullWidth
-                      label="e.g Mumbai"
                       variant="standard"
                     />
-                    <FormGroup>
-                      <FormControlLabel
-                        control={<Checkbox />}
-                        label="Is work from home"
-                      />
-                    </FormGroup>
+                    <DialogContentText color="initial">
+                      Link
+                    </DialogContentText>
+                    <TextField
+                      onChange={e => { setProjectsInput({ ...projectsInput, link: e.target.value }) }}
+                      value={projectsInput.link}
+                      fullWidth
+                      variant="standard"
+                    />
+
                     <DialogContentText color="initial">
                       Description
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="projects_description"
+                      onChange={e => { setProjectsInput({ ...projectsInput, description: e.target.value }) }}
+                      value={projectsInput.description}
                       fullWidth
                       multiline
-                      rows={8}
+                      rows={4}
                       label="Short description of your Work"
                       variant="outlined"
                     />
                   </Box>
                 </DialogContent>
                 <DialogActions>
+                  <Button onClick={() => { setProjects([...projects, projectsInput]); console.log(projects); setOpenAcademics(false); setProjectsInput({ title: "", startMonth: "", endMonth: "", link: "", description: "" }); setProfile2({ ...profile2, projects: projects }) }}>Add</Button>
+
                   <Button onClick={handleCloseAcademics}>Close</Button>
                 </DialogActions>
               </Dialog>
@@ -785,6 +1104,7 @@ const Resume = () => {
         </Grid>
       </Container>
 
+      {/* ===============================SKILLS======================== */}
       <Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
         <Divider variant="middle" />
@@ -799,6 +1119,13 @@ const Resume = () => {
           {/* Right Element of Container */}
           <Grid item xs={12} md={9}>
             <Box sx={{ m: 3 }}>
+              {skills.map((s) => (
+                <div key={skills.indexOf(s)} style={{ display: "flex" }}>
+                  {s.skill}
+                  <Rating precision={0.5} name="size-medium" value={s.rating} size="large" readOnly />
+                  <br />
+                </div>
+              ))}
               <Button startIcon={<AddIcon />} onClick={handleClickOpenSkills}>
                 Add Skills
               </Button>
@@ -823,25 +1150,29 @@ const Resume = () => {
                       Add Skill
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="skills"
+                      // onChange={handleChange}
+                      onChange={(e) => { setSkillsInput({ ...skillsInput, skill: e.target.value }); console.log(skillsInput) }}
                       fullWidth
+                      value={skillsInput.skill}
                       label="e.g Web Development"
                       variant="standard"
                     />
                     <DialogContentText color="initial">
-                      Add Rating to Skills
+                      Add Rating to Skills(muliple of 0.5)
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="Ratings"
+                      // onChange={handleChange}
+                      type="number"
+                      onChange={e => { setSkillsInput({ ...skillsInput, rating: e.target.value }); console.log(skillsInput) }}
+                      value={skillsInput.rating}
                       fullWidth
-                      label="e.g 2.5/5 OR 4/5"
+                      label="e.g 2.5/5 OR 4/5 out of 5"
                       variant="standard"
                     />
                   </Box>
                 </DialogContent>
                 <DialogActions>
+                  <Button onClick={() => { skills.push(skillsInput); console.log(skills); setOpenSkills(false); setProfile2({ ...profile2, skills: skills }); console.log(profile2); setSkillsInput({ skill: "", rating: 0 }) }}>Add</Button>
                   <Button onClick={handleCloseSkills}>Close</Button>
                 </DialogActions>
               </Dialog>
@@ -850,6 +1181,7 @@ const Resume = () => {
         </Grid>
       </Container>
 
+      {/* =========================================LINKS====================================== */}
       <Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
         <Divider variant="middle" />
@@ -864,6 +1196,22 @@ const Resume = () => {
           {/* Right Element of Container */}
           <Grid item xs={12} md={9}>
             <Box sx={{ m: 3 }}>
+
+              {linksInput.blog !== "" ? <>
+                Blog: <a href={linksInput.blog}>{linksInput.blog}</a>
+              </> : null}<br />
+              {linksInput.github !== "" ? <>
+                Github Profile: <a href={linksInput.github}>{linksInput.github}</a>
+              </> : null}<br />
+              {linksInput.linkedin !== "" ? <>
+                Linkedin Profile: <a href={linksInput.linkedin}>{linksInput.linkedin}</a>
+              </> : null}<br />
+              {linksInput.behance !== "" ? <>
+                Behance Profile: <a href={linksInput.behance}>{linksInput.behance}</a>
+              </> : null}<br />
+              {linksInput.other !== "" ? <>
+                Other Profile: <a href={linksInput.other}>{linksInput.other}</a>
+              </> : null}<br />
               <Button
                 startIcon={<AddIcon />}
                 onClick={handleClickOpenWorkSamples}
@@ -893,8 +1241,8 @@ const Resume = () => {
                       Blog link
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="work_sample_blog_link"
+                      onChange={e => { setlinksInput({ ...linksInput, blog: e.target.value }) }}
+                      value={linksInput.blog}
                       fullWidth
                       label="http://myblog.com"
                       variant="standard"
@@ -903,28 +1251,28 @@ const Resume = () => {
                       GitHub profile
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="work_sample_github_profile"
+                      onChange={e => { setlinksInput({ ...linksInput, github: e.target.value }) }}
+                      value={linksInput.github}
                       fullWidth
                       label="http://github.com/my_profile"
                       variant="standard"
                     />
                     <DialogContentText color="initial">
-                      Play store developer A/c(public link)
+                      Linkedin Link
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="work_sample_play_store"
+                      onChange={e => { setlinksInput({ ...linksInput, linkedin: e.target.value }) }}
+                      value={linksInput.linkedin}
                       fullWidth
-                      label="http://play.google.com/store/apps/developer?id=myapps"
+                      label="http://linkedin.com/my_profile"
                       variant="standard"
                     />
                     <DialogContentText color="initial">
                       Behance portfolio link
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="work_sample_portfolio_link"
+                      onChange={e => { setlinksInput({ ...linksInput, behance: e.target.value }) }}
+                      value={linksInput.behance}
                       fullWidth
                       label="http://behance.net/my_profile"
                       variant="standard"
@@ -939,8 +1287,8 @@ const Resume = () => {
                       the link here.
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="other_work_sample_link"
+                      onChange={e => { setlinksInput({ ...linksInput, other: e.target.value }) }}
+                      value={linksInput.other}
                       fullWidth
                       label="https://myworksample.com"
                       variant="outlined"
@@ -948,7 +1296,8 @@ const Resume = () => {
                   </Box>
                 </DialogContent>
                 <DialogActions>
-                  <Button>Save</Button>
+                  <Button onClick={() => { setLinks(linksInput); console.log(links); setProfile2({ ...profile2, links: links }); setOpenWorksamples(false); console.log(profile2); }}>Add</Button>
+
                   <Button onClick={handleCloseWorksamples}>Close</Button>
                 </DialogActions>
               </Dialog>
@@ -975,12 +1324,21 @@ const Resume = () => {
           {/* Right Element of Container */}
           <Grid item xs={12} md={9}>
             <Box sx={{ m: 3 }}>
+              {additionalDetails.map((d) => (
+                <p key={additionalDetails.indexOf(d)}>
+                  <p>{additionalDetails.indexOf(d) + 1}) {d}</p>
+                  <br />
+                </p>
+              ))}
               <Button
                 startIcon={<AddIcon />}
                 onClick={handleClickOpenAccomplishments}
               >
                 Add Accomplishments/additional Details
               </Button>
+
+
+
               <Dialog
                 fullWidth
                 open={openAccomplishment}
@@ -1007,17 +1365,18 @@ const Resume = () => {
                       or any interests/hobbies you have pursued.
                     </DialogContentText>
                     <TextField
-                      onChange={handleChange}
-                      name="accomplishment_description"
                       fullWidth
                       multiline
                       rows={8}
                       label="Short description of your Work"
                       variant="outlined"
+                      value={additionalDetailsText}
+                      onChange={(e) => { setAdditionalDetailsText(e.target.value); console.log(additionalDetailsText) }}
                     />
                   </Box>
                 </DialogContent>
                 <DialogActions>
+                  <Button onClick={() => { setadditionalDetails([...additionalDetails, additionalDetailsText]); console.log("Additional Details", additionalDetails); setOpenAccomplishment(false); setAdditionalDetailsText(""); setProfile2({ ...profile2, additionalDetails: additionalDetails }) }}>Add</Button>
                   <Button onClick={handleCloseAccomplishments}>Close</Button>
                 </DialogActions>
               </Dialog>

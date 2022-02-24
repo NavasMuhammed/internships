@@ -80,7 +80,7 @@ function App() {
             />
             <Route
               exact
-              path="/employer/ViewFullApplications"
+              path="/application/:id"
               element={<ViewFullApplications />}
             />
           </Routes>

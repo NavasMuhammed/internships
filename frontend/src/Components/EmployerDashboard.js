@@ -26,6 +26,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { allEmployerInternshipsAction } from "../actions/internshipActions";
+import moment from "moment";
 
 const EmployerDashboard = () => {
   const dispatch = useDispatch();
@@ -34,9 +35,15 @@ const EmployerDashboard = () => {
   const allEmployerInternshipsList = useSelector(
     (state) => state.allEmployerInternships.employerInternships
   );
+  let now = new Date();
+  var dateString = moment(now).format('YYYY-MM-DD');
+  const isLastDatePassed = allEmployerInternshipsList.data[0].lastDateToApply.slice(4, 16) > dateString
   useEffect(() => {
     console.log("All employer internships", allEmployerInternshipsList)
     // dispatch(allEmployerInternshipsAction());
+
+    console.log("time", isLastDatePassed)
+
     // console.log("Dispatched");
   }, [dispatch]);
 
@@ -178,8 +185,11 @@ const EmployerDashboard = () => {
                 <TableRow>
                   <TableCell>{allEmployerInternshipsList.data.indexOf(i) + 1}</TableCell>
                   <TableCell>{i.title}</TableCell>
-                  <TableCell> ACTIVE</TableCell>
-                  <TableCell><Link style={{ textDecoration: "none" }} to="/Employee/Internship"><Button variant="contained" color="primary">View Applications({i.noOfApplicants})</Button></Link></TableCell>
+                  <TableCell>ACTIVE</TableCell>
+                  {/* <TableCell> {allEmployerInternshipsList.data[allEmployerInternshipsList.data.indexOf(i)].lastDateToApply.slice(4, 16) > dateString ? "CLOSED" : "ACTIVE"}</TableCell> */}
+
+                  {/* <TableCell> {allEmployerInternshipsList.data[allEmployerInternshipsList.data.indexOf(i)].lastDateToApply.slice(0, 16) > dateString ? "CLOSED" : "ACTIVE"}</TableCell> */}
+                  <TableCell><Link style={{ textDecoration: "none" }} to="/employer/applications"><Button variant="contained" color="primary">View Applications({i.noOfApplicants})</Button></Link></TableCell>
                   <TableCell>{i.lastDateToApply.slice(0, 16)}</TableCell>
 
                 </TableRow>

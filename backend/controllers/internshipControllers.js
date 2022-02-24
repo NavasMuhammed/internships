@@ -302,7 +302,6 @@ const getAllInternshipsOfUser = asyncHandler(async (req, res) => {
 // Get all Internships by instructor
 const getAllInternshipsOfEmployer = asyncHandler(async (req, res) => {
   const Internships = await Internship.find({ employerId: req.params.id });
-  console.log("Hello testing");
   if (Internships) {
     res.status(200).json({
       success: true,

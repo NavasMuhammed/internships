@@ -157,7 +157,7 @@ const Employee_intern_dash = () => {
                   <Button
                     variant="contained"
                     component={Link}
-                    to="/employer/ViewFullApplications"
+                    to={`/application/${2039930220303202}`}
                     color="primary"
                     sx={{ mr: 2 }}
                   >

@@ -25,6 +25,14 @@ import {
   oneInternshipDetails,
   allUserInternshipActions,
 } from "../actions/internshipActions";
+import {
+  FacebookShareButton,
+  WhatsappShareButton,
+  LinkedinShareButton,
+  WhatsappIcon,
+  FacebookIcon,
+  LinkedinIcon,
+} from "react-share";
 
 const monthNames = [
   "Jan",
@@ -79,6 +87,8 @@ const ParticularInternship = (props) => {
   // const logInternship = () => {
   //     console.log("Log karta hu to bhi aata hai , ", internship._id);
   // }
+  const shareUrl = "http://www.xcitedu.com/";
+  const quote = "Write Some quote here if you want";
   return (
     <>
       <Grid ml={25} mr={25} mt={8}>
@@ -198,14 +208,82 @@ const ParticularInternship = (props) => {
                                         NGO
                                     </Typography> */}
                 </Box>
+                <div style={{ position: "absolute", right: "250px" }}>
+                  <FacebookShareButton
+                    title="test"
+                    url={`http://internships.xcitedu.com/internship/${internshipDetail._id}`}
+                    quote={`Internship opportunity as ${internshipDetail.title} internship at ${internshipDetail.companyName}. You can find details of the internship below:
+
+Designation: ${internshipDetail.title}
+Company Name: ${internshipDetail.companyName}
+Stipend: Rs.${internshipDetail.stipend}/month
+Duration: ${internshipDetail.duration} months
+Location: ${internshipDetail.location}
+Start Date: ${internshipDetail.startDate}
+Last Date to Apply: ${internshipDetail.lastDateToApply}
+number of Openings: ${internshipDetail.noOfOpenings}
+
+Link to apply: http://internships.xcitedu.com/internship/${internshipDetail._id}
+`}
+                    hashtag={"#xcitedu, #internships"}
+                  >
+                    <FacebookIcon size={40} round={true} />
+                  </FacebookShareButton>
+                  <WhatsappShareButton
+                    title={`Internship opportunity as ${internshipDetail.title} internship at ${internshipDetail.companyName}. You can find details of the internship below:
+
+Designation: ${internshipDetail.title}
+Company Name: ${internshipDetail.companyName}
+Stipend: Rs.${internshipDetail.stipend}/month
+Duration: ${internshipDetail.duration} months
+Location: ${internshipDetail.location}
+Start Date: ${internshipDetail.startDate}
+Last Date to Apply: ${internshipDetail.lastDateToApply}
+number of Openings: ${internshipDetail.noOfOpenings}
+
+Link to apply: http://internships.xcitedu.com/internship/${internshipDetail._id}
+
+For more such internships visit`}
+                    url={shareUrl}
+
+                    // url={`http://internships.xcitedu.com/allInternships`}
+                    separator={" : "}
+                  >
+                    <WhatsappIcon size={40} round={true} />
+                  </WhatsappShareButton>
+                  <LinkedinShareButton
+                    url={"www.xcitedu.com"}
+                    title={`Internship opportunity as ${internshipDetail.title} internship at ${internshipDetail.companyName}`}
+                    summary={`Internship opportunity as ${internshipDetail.title} internship at ${internshipDetail.companyName}. You can find details of the internship below:
+
+Designation: ${internshipDetail.title}
+Company Name: ${internshipDetail.companyName}
+Stipend: Rs.${internshipDetail.stipend}/month
+Duration: ${internshipDetail.duration} months
+Location: ${internshipDetail.location}
+Start Date: ${internshipDetail.startDate}
+Last Date to Apply: ${internshipDetail.lastDateToApply}
+number of Openings: ${internshipDetail.noOfOpenings}
+
+Link to apply: http://internships.xcitedu.com/internship/${internshipDetail._id}
+
+`}
+                    source="www.xcitedu.com"
+                  >
+                    <LinkedinIcon size={40} round={true} />
+                  </LinkedinShareButton>
+                </div>
                 <Box sx={{ display: "flex", marginTop: "14px" }}>
                   <Typography>
                     <HomeWorkIcon />
                   </Typography>
                   <Typography ml={2}>{item.location}</Typography>
                 </Box>
+
                 <Grid mt={5} display="flex" justifyContent="space-between">
                   <Box sx={{ display: "flex", flexDirection: "column" }}>
+
+
                     <Box sx={{ display: "flex" }}>
                       <Typography>
                         <StartDate />

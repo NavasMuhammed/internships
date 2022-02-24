@@ -14,6 +14,7 @@ import {
   Paper,
   Button
 } from "@mui/material";
+import { Link } from "react-router-dom"
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 
@@ -27,6 +28,7 @@ const MyApplication = () => {
   useEffect(() => {
     console.log("All user Applications", allUserApplicationsList)
     // dispatch(allEmployerInternshipsAction());
+
     // console.log("Dispatched");
   }, [dispatch]);
   return (
@@ -45,6 +47,7 @@ const MyApplication = () => {
               <TableCell><b>NUMBER OF APPLICANTS</b></TableCell>
               <TableCell><b>APPLICATION STATUS</b></TableCell>
               <TableCell><b>REVIEW APPLICATION</b></TableCell>
+              <TableCell><b>CERTIFICATE</b></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -54,15 +57,25 @@ const MyApplication = () => {
                 <TableCell>{allUserApplicationsList.data.indexOf(a) + 1}</TableCell>
                 <TableCell>{a.internshipId.companyName}</TableCell>
                 <TableCell>{a.internshipId.title}</TableCell>
-                <TableCell> {a.updatedAt.slice(0, 10)}</TableCell>
+                <TableCell> {a.createdAt.slice(0, 10)}</TableCell>
                 <TableCell>{a.internshipId.noOfApplicants}</TableCell>
                 <TableCell>
                   Applied
                   {/* <HelpOutlineOutlinedIcon fontSize="small" color="primary" /> */}
                 </TableCell>
                 <TableCell>
-                  <Button variant="contained" color="primary">View Application</Button>
+                  <Link to={`/application/${a._id}`} style={{ textDecoration: "none" }}><Button variant="contained" color="primary">View Application</Button></Link>
                 </TableCell>
+                {a.applicationStatus === "hired" ? (
+                  <TableCell>
+                    <Button variant="contained" color="primary">Get Certificate</Button>
+                  </TableCell>
+                ) : (
+                  <TableCell>
+                    <Button variant="contained" disabled color="primary">Get Certificate</Button>
+                  </TableCell>
+                )}
+
               </TableRow>
             ))}
             {/* <TableRow>
