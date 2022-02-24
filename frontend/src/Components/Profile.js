@@ -547,17 +547,17 @@ const Resume = () => {
                   <Button onClick={() => { jobs.push(jobsInput); console.log(jobs); setProfile2({ ...profile2, jobs: jobs }); setOpenJobs(false); console.log(profile2); setJobsInput({ profile: "", organization: "", location: "", description: "", startDate: "", endDate: "" }) }}>Add</Button>
 
                   <Button onClick={handleCloseJobs}>Close</Button>
-                </DialogActions>
-              </Dialog>
-            </Box>
-          </Grid>
-        </Grid>
-      </Container>
+                </DialogActions >
+              </Dialog >
+            </Box >
+          </Grid >
+        </Grid >
+      </Container >
 
       {/* ============================================INTERNSHIPS=============================================== */}
-      <Container component={Paper} sx={{ display: "flex" }}>
+      < Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
-        <Divider variant="middle" />
+        < Divider variant="middle" />
         <Grid item xs={12} md={12} sx={{ display: "flex" }}>
           <Grid item xs={12} md={3}>
             <Box sx={{ m: 3 }}>
@@ -724,12 +724,12 @@ const Resume = () => {
             </Box>
           </Grid>
         </Grid>
-      </Container>
+      </Container >
 
       {/* ===========================POSITIONS============================ */}
-      <Container component={Paper} sx={{ display: "flex" }}>
+      < Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
-        <Divider variant="middle" />
+        < Divider variant="middle" />
         <Grid item xs={12} md={12} sx={{ display: "flex" }}>
           <Grid item xs={12} md={3}>
             <Box sx={{ m: 3 }}>
@@ -795,12 +795,12 @@ const Resume = () => {
             </Box>
           </Grid>
         </Grid>
-      </Container>
+      </Container >
 
       {/* =====================================COURSES=========================================== */}
-      <Container component={Paper} sx={{ display: "flex" }}>
+      < Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
-        <Divider variant="middle" />
+        < Divider variant="middle" />
         <Grid item xs={12} md={12} sx={{ display: "flex" }}>
           <Grid item xs={12} md={3}>
             <Box sx={{ m: 3 }}>
@@ -1102,12 +1102,12 @@ const Resume = () => {
             </Box>
           </Grid>
         </Grid>
-      </Container>
+      </Container >
 
       {/* ===============================SKILLS======================== */}
-      <Container component={Paper} sx={{ display: "flex" }}>
+      < Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
-        <Divider variant="middle" />
+        < Divider variant="middle" />
         <Grid item xs={12} md={12} sx={{ display: "flex" }}>
           <Grid item xs={12} md={3}>
             <Box sx={{ m: 3 }}>
@@ -1174,17 +1174,17 @@ const Resume = () => {
                 <DialogActions>
                   <Button onClick={() => { skills.push(skillsInput); console.log(skills); setOpenSkills(false); setProfile2({ ...profile2, skills: skills }); console.log(profile2); setSkillsInput({ skill: "", rating: 0 }) }}>Add</Button>
                   <Button onClick={handleCloseSkills}>Close</Button>
-                </DialogActions>
-              </Dialog>
-            </Box>
-          </Grid>
-        </Grid>
-      </Container>
+                </DialogActions >
+              </Dialog >
+            </Box >
+          </Grid >
+        </Grid >
+      </Container >
 
       {/* =========================================LINKS====================================== */}
-      <Container component={Paper} sx={{ display: "flex" }}>
+      < Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
-        <Divider variant="middle" />
+        < Divider variant="middle" />
         <Grid item xs={12} md={12} sx={{ display: "flex" }}>
           <Grid item xs={12} md={3}>
             <Box sx={{ m: 3 }}>
@@ -1304,7 +1304,7 @@ const Resume = () => {
             </Box>
           </Grid>
         </Grid>
-      </Container>
+      </Container >
 
       <Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
