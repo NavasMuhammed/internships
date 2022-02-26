@@ -22,6 +22,9 @@ const MyApplication = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  const allEmployerInternshipsList = useSelector(
+    (state) => state.allEmployerInternships.employerInternships
+  );
   const allUserApplicationsList = useSelector(
     (state) => state.allUserApplications.userApplications
   );
@@ -55,13 +58,12 @@ const MyApplication = () => {
 
               <TableRow key={a._id}>
                 <TableCell>{allUserApplicationsList.data.indexOf(a) + 1}</TableCell>
-                <TableCell>{a.internshipId.companyName}</TableCell>
+                {/* <TableCell>{a.internshipId.companyName}</TableCell> */}
                 <TableCell>{a.internshipId.title}</TableCell>
                 <TableCell> {a.createdAt.slice(0, 10)}</TableCell>
                 <TableCell>{a.internshipId.noOfApplicants}</TableCell>
                 <TableCell>
                   Applied
-                  {/* <HelpOutlineOutlinedIcon fontSize="small" color="primary" /> */}
                 </TableCell>
                 <TableCell>
                   <Link to={`/application/${a._id}`} style={{ textDecoration: "none" }}><Button variant="contained" color="primary">View Application</Button></Link>

@@ -111,7 +111,16 @@ const getAllApplicationsOfUser = asyncHandler(async (req, res) => {
     });
 });
 
+const getAllApplicationsOfInternship = asyncHandler(async (req, res) => {
+    const applications = await Application.find({ internshipId: req.params.id }).populate("internshipId userId")
+    res.status(200).json({
+        success: true,
+        data: applications,
+    });
+});
+
 module.exports = {
     createApplication,
     getAllApplicationsOfUser,
+    getAllApplicationsOfInternship,
 };

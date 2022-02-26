@@ -19,6 +19,9 @@ const Home = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  const allUserApplicationsList = useSelector(
+    (state) => state.allUserApplications.userApplications
+  );
   useEffect(() => {
     dispatch(allInternshipsListAction());
     if (userInfo) {

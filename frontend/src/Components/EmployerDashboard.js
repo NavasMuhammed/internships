@@ -42,7 +42,6 @@ const EmployerDashboard = () => {
     console.log("All employer internships", allEmployerInternshipsList)
     // dispatch(allEmployerInternshipsAction());
 
-    console.log("time", isLastDatePassed)
 
     // console.log("Dispatched");
   }, [dispatch]);
@@ -189,7 +188,7 @@ const EmployerDashboard = () => {
                   {/* <TableCell> {allEmployerInternshipsList.data[allEmployerInternshipsList.data.indexOf(i)].lastDateToApply.slice(4, 16) > dateString ? "CLOSED" : "ACTIVE"}</TableCell> */}
 
                   {/* <TableCell> {allEmployerInternshipsList.data[allEmployerInternshipsList.data.indexOf(i)].lastDateToApply.slice(0, 16) > dateString ? "CLOSED" : "ACTIVE"}</TableCell> */}
-                  <TableCell><Link style={{ textDecoration: "none" }} to="/employer/applications"><Button variant="contained" color="primary">View Applications({i.noOfApplicants})</Button></Link></TableCell>
+                  <TableCell><Link style={{ textDecoration: "none" }} to={`/employer/applications/${i._id}`}><Button variant="contained" color="primary">View Applications({i.noOfApplicants})</Button></Link></TableCell>
                   <TableCell>{i.lastDateToApply.slice(0, 16)}</TableCell>
 
                 </TableRow>

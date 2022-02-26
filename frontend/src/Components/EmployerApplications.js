@@ -20,18 +20,167 @@ import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import ReceiptLongRoundedIcon from "@mui/icons-material/ReceiptLongRounded";
 import HelpOutlineRoundedIcon from "@mui/icons-material/HelpOutlineRounded";
 
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import Board, { moveCard } from "@asseinfo/react-kanban";
+import "@asseinfo/react-kanban/dist/styles.css";
+// Use your own styles to override the default styles
+// import "./styles.css";
 
-const Employee_intern_dash = () => {
+
+
+
+// function UncontrolledBoard() {
+//   return (
+//     <Board
+//       allowRemoveLane
+//       allowRenameColumn
+//       allowRemoveCard
+//       onLaneRemove={console.log}
+//       onCardRemove={console.log}
+//       onLaneRename={console.log}
+//       initialBoard={board}
+//       allowAddCard={{ on: "top" }}
+//       onNewCardConfirm={draftCard => ({
+//         id: new Date().getTime(),
+//         ...draftCard
+//       })}
+//       onCardNew={console.log}
+//     />
+//   );
+// }
+const EmployerApplications = () => {
   const [value, setvalue] = useState(0);
+  const [applicationData, setApplicationData] = useState([])
   const handleTabs = (e, val) => {
     console.warn(val);
     setvalue(val);
   };
+  const { id } = useParams();
+
+  const getAllApplicationsOfInternship = async () => {
+    const res = await fetch(`http://localhost:8080/application/getAllApplicationsOfInternship/${id}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+    })
+    const data = await res.json();
+    console.log(data)
+    setApplicationData(data)
+    console.log("application data", applicationData)
+  }
+
+  const board = {
+    columns: [
+      {
+        id: 1,
+        title: "Pending Decision",
+        cards: [
+          {
+            id: 1,
+            title: "card title 1",
+            description: "Card content"
+          },
+          {
+            id: 2,
+            title: "Card title 2",
+            description: "Card content"
+          },
+          {
+            id: 3,
+            title: "Card title 3",
+            description: "Card content"
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: "Shortlisted",
+        cards: [
+          {
+            id: 4,
+            title: "Card title 4",
+            description: "Card content"
+          },
+          {
+            id: 5,
+            title: "Card title 5",
+            description: "Card content"
+          },
+          {
+            id: 6,
+            title: "Card title 6",
+            description: "Card content"
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: "Hired",
+        cards: [
+          {
+            id: 7,
+            title: "Card title 7",
+            description: "Card content"
+          },
+          {
+            id: 8,
+            title: "Card title 8",
+            description: "Card content"
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: "Rejected",
+        cards: [
+          {
+            id: 9,
+            title: "Card title 9",
+            description: "Card content"
+          },
+          {
+            id: 10,
+            title: "Card title 10",
+            description: "Card content"
+          }
+        ]
+      }
+    ]
+  };
+
+  function ControlledBoard() {
+    // You need to control the state yourself.
+    const [controlledBoard, setBoard] = useState(board);
+
+    function handleCardMove(_card, source, destination) {
+      const updatedBoard = moveCard(controlledBoard, source, destination);
+      setBoard(updatedBoard);
+      console.log(controlledBoard);
+    }
+
+    return (
+      <Board onCardDragEnd={handleCardMove} disableColumnDrag>
+        {controlledBoard}
+      </Board>
+    );
+  }
+  const [controlledBoard, setBoard] = useState(board);
+  useEffect(() => {
+    getAllApplicationsOfInternship()
+  }, [controlledBoard])
+
   return (
     <>
-      <Container>
+      <h1 style={{ textAlign: "center", margin: "15px" }}>All UI/UX Designing Applications</h1>
+      <ControlledBoard />
+      <Button style={{ position: "absolute", right: "30%" }} variant="contained">Submit Changes</Button>
+    </>
+  );
+}
+{/* <Container>
         <Box sx={{ flexGrow: 1, pt: 3 }}>
           <Typography variant="h6" color="initial">
             Filters
@@ -166,7 +315,6 @@ const Employee_intern_dash = () => {
                 </CardActions>
               </Box>
             </Card>
-            {/* 2nd Card */}
             <Card
               variant="outlined"
               component={Paper}
@@ -291,14 +439,14 @@ const Employee_intern_dash = () => {
             Item 5 Detail
           </TabPanel>
         </Box>
-      </Container>
+      </Container> 
     </>
   );
-};
+};*/}
 
-function TabPanel(props) {
-  const { children, value, index } = props;
-  return <>{value === index && <Box>{children}</Box>}</>;
-}
+// function TabPanel(props) {
+//   const { children, value, index } = props;
+//   return <>{value === index && <Box>{children}</Box>}</>;
+// }
 
-export default Employee_intern_dash;
+export default EmployerApplications;
