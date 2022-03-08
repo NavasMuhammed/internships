@@ -22,7 +22,7 @@ import {
   FormControlLabel,
   Checkbox,
   MenuItem,
-  Rating
+  Rating,
 } from "@mui/material";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -44,52 +44,51 @@ const Resume = () => {
   const [openWorksamples, setOpenWorksamples] = useState(false);
   const [openAccomplishment, setOpenAccomplishment] = useState(false);
 
-
-  const [education, setEducation] = useState([])
-  const [jobs, setJobs] = useState([])
-  const [internships, setInternships] = useState([])
-  const [positions, setPositions] = useState([])
-  const [courses, setCourses] = useState([])
-  const [projects, setProjects] = useState([])
-  const [skills, setSkills] = useState([])
-  const [links, setLinks] = useState([])
-  const [additionalDetails, setadditionalDetails] = useState([])
+  const [education, setEducation] = useState([]);
+  const [jobs, setJobs] = useState([]);
+  const [internships, setInternships] = useState([]);
+  const [positions, setPositions] = useState([]);
+  const [courses, setCourses] = useState([]);
+  const [projects, setProjects] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const [links, setLinks] = useState([]);
+  const [additionalDetails, setadditionalDetails] = useState([]);
   // SINGLE FORMS
-  const [PORText, setPORText] = useState("")
-  const [additionalDetailsText, setAdditionalDetailsText] = useState("")
+  const [PORText, setPORText] = useState("");
+  const [additionalDetailsText, setAdditionalDetailsText] = useState("");
   const [skillsInput, setSkillsInput] = useState({
     skill: "",
-    rating: 0
-  })
+    rating: 0,
+  });
   const [educationInput, setEducationInput] = useState({
     title: "",
     institute: "",
     startYear: "",
-    endYear: ""
-  })
+    endYear: "",
+  });
   const [jobsInput, setJobsInput] = useState({
     profile: "",
     organization: "",
     location: "",
     description: "",
     startDate: "",
-    endDate: ""
-  })
+    endDate: "",
+  });
   const [internshipsInput, setInternshipsInput] = useState({
     profile: "",
     organization: "",
     location: "",
     description: "",
     startDate: "",
-    endDate: ""
-  })
+    endDate: "",
+  });
   const [projectsInput, setProjectsInput] = useState({
     title: "",
     startMonth: "",
     endMonth: "",
     description: "",
-    link: ""
-  })
+    link: "",
+  });
   const [courseInput, setCourseInput] = useState({
     title: "",
     organization: "",
@@ -97,14 +96,14 @@ const Resume = () => {
     startMonth: "",
     endMonth: "",
     description: "",
-  })
+  });
   const [linksInput, setlinksInput] = useState({
     blog: "",
     github: "",
     linkedin: "",
     behance: "",
-    other: ""
-  })
+    other: "",
+  });
   // education: education------------------------------------------DONE,
   // jobs: jobs-----------------------------------------------------DONE,
   // internships: internships-----------------------------------------------DONE,
@@ -123,14 +122,14 @@ const Resume = () => {
     projects: projects,
     skills: skills,
     links: links,
-    additionalDetails: additionalDetails
-  })
+    additionalDetails: additionalDetails,
+  });
 
   useEffect(() => {
     if (profile2) {
       console.log(profile2);
     }
-  }, [profile2])
+  }, [profile2]);
 
   const [profile, setProfile] = useState({
     Add_your_Education: "",
@@ -256,7 +255,15 @@ const Resume = () => {
 
           <Grid item xs={6} md={4}>
             <Box sx={{ m: 3 }}>
-              <Button variant="outlined" endIcon={<FileDownloadOutlinedIcon />}>
+              <Button
+                variant="contained"
+                sx={{
+                  background: "#9d0000",
+                  "&:hover": { background: "#9d0000" },
+                  "&:focus": { background: "#9d0000" },
+                }}
+                endIcon={<FileDownloadOutlinedIcon />}
+              >
                 Download
               </Button>
             </Box>
@@ -281,7 +288,11 @@ const Resume = () => {
             <Box sx={{ m: 3 }}>
               {education.map((e) => (
                 <>
-                  <Typography variant="h6" color="initial" sx={{ display: "flex" }}>
+                  <Typography
+                    variant="h6"
+                    color="initial"
+                    sx={{ display: "flex" }}
+                  >
                     {e.title}
                     <Box sx={{ ml: 30 }}>
                       <EditIcon sx={{ mr: 2 }}></EditIcon>
@@ -308,6 +319,7 @@ const Resume = () => {
               <Button
                 startIcon={<AddIcon />}
                 onClick={handleClickOpenEducation}
+                sx={{ color: "#9d0000" }}
               >
                 Add Education
               </Button>
@@ -339,7 +351,13 @@ const Resume = () => {
                       value={educationInput.title}
                       placeholder="Eg, B.Tech/ B.Sc"
                       variant="standard"
-                      onChange={e => { setEducationInput({ ...educationInput, title: e.target.value }); console.log(educationInput) }}
+                      onChange={(e) => {
+                        setEducationInput({
+                          ...educationInput,
+                          title: e.target.value,
+                        });
+                        console.log(educationInput);
+                      }}
                     />
                     <TextField
                       // onChange={handleChange}
@@ -349,7 +367,13 @@ const Resume = () => {
                       placeholder="Institute Name"
                       variant="standard"
                       value={educationInput.institute}
-                      onChange={e => { setEducationInput({ ...educationInput, institute: e.target.value }); console.log(educationInput) }}
+                      onChange={(e) => {
+                        setEducationInput({
+                          ...educationInput,
+                          institute: e.target.value,
+                        });
+                        console.log(educationInput);
+                      }}
                     />
                     <br />
                     Start Year
@@ -360,7 +384,13 @@ const Resume = () => {
                       value={educationInput.startYear}
                       variant="standard"
                       type="month"
-                      onChange={e => { setEducationInput({ ...educationInput, startYear: e.target.value }); console.log(educationInput) }}
+                      onChange={(e) => {
+                        setEducationInput({
+                          ...educationInput,
+                          startYear: e.target.value,
+                        });
+                        console.log(educationInput);
+                      }}
                     />
                     <br />
                     End Year
@@ -371,12 +401,34 @@ const Resume = () => {
                       value={educationInput.endYear}
                       type="month"
                       variant="standard"
-                      onChange={e => { setEducationInput({ ...educationInput, endYear: e.target.value }); console.log(educationInput) }}
+                      onChange={(e) => {
+                        setEducationInput({
+                          ...educationInput,
+                          endYear: e.target.value,
+                        });
+                        console.log(educationInput);
+                      }}
                     />
                   </Box>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={() => { education.push(educationInput); console.log(education); setProfile2({ ...profile2, education: education }); setOpenEducation(false); console.log(profile2); setEducationInput({ title: "", institute: "", startYear: "", endYear: "" }) }}>Add</Button>
+                  <Button
+                    onClick={() => {
+                      education.push(educationInput);
+                      console.log(education);
+                      setProfile2({ ...profile2, education: education });
+                      setOpenEducation(false);
+                      console.log(profile2);
+                      setEducationInput({
+                        title: "",
+                        institute: "",
+                        startYear: "",
+                        endYear: "",
+                      });
+                    }}
+                  >
+                    Add
+                  </Button>
                   <Button onClick={handleCloseEducation}>Close</Button>
                 </DialogActions>
               </Dialog>
@@ -402,7 +454,11 @@ const Resume = () => {
             <Box sx={{ m: 3 }}>
               {jobs.map((j) => (
                 <>
-                  <Typography variant="h6" color="initial" sx={{ display: "flex" }}>
+                  <Typography
+                    variant="h6"
+                    color="initial"
+                    sx={{ display: "flex" }}
+                  >
                     {j.profile}
                     <Box sx={{ ml: 30 }}>
                       <EditIcon sx={{ mr: 2 }}></EditIcon>
@@ -436,11 +492,14 @@ const Resume = () => {
                     sx={{ color: "#666" }}
                   >
                     {j.description}
-
                   </Typography>
                 </>
               ))}
-              <Button startIcon={<AddIcon />} onClick={handleClickOpenJobs}>
+              <Button
+                startIcon={<AddIcon />}
+                sx={{ color: "#9d0000" }}
+                onClick={handleClickOpenJobs}
+              >
                 Add Jobs
               </Button>
               <Dialog
@@ -462,12 +521,13 @@ const Resume = () => {
                       flexDirection: "column",
                     }}
                   >
-
                     <DialogContentText color="initial">
                       Profile
                     </DialogContentText>
                     <TextField
-                      onChange={(e) => { setJobsInput({ ...jobsInput, profile: e.target.value }) }}
+                      onChange={(e) => {
+                        setJobsInput({ ...jobsInput, profile: e.target.value });
+                      }}
                       value={jobsInput.profile}
                       // onChange={handleChange}
                       // name="job_operation"
@@ -481,7 +541,12 @@ const Resume = () => {
                     <TextField
                       // onChange={handleChange}
                       // name="job_orgarnization"
-                      onChange={(e) => { setJobsInput({ ...jobsInput, organization: e.target.value }) }}
+                      onChange={(e) => {
+                        setJobsInput({
+                          ...jobsInput,
+                          organization: e.target.value,
+                        });
+                      }}
                       value={jobsInput.organization}
                       fullWidth
                       label="e.g Internshala"
@@ -493,7 +558,12 @@ const Resume = () => {
                     <TextField
                       // onChange={handleChange}
                       // name="job_location"
-                      onChange={(e) => { setJobsInput({ ...jobsInput, location: e.target.value }) }}
+                      onChange={(e) => {
+                        setJobsInput({
+                          ...jobsInput,
+                          location: e.target.value,
+                        });
+                      }}
                       value={jobsInput.location}
                       fullWidth
                       label="e.g Mumbai"
@@ -511,7 +581,12 @@ const Resume = () => {
                     <TextField
                       // onChange={handleChange}
                       // name="job_description"
-                      onChange={(e) => { setJobsInput({ ...jobsInput, description: e.target.value }) }}
+                      onChange={(e) => {
+                        setJobsInput({
+                          ...jobsInput,
+                          description: e.target.value,
+                        });
+                      }}
                       value={jobsInput.description}
                       fullWidth
                       multiline
@@ -525,7 +600,12 @@ const Resume = () => {
                     <TextField
                       // onChange={handleChange}
                       // name="job_description"
-                      onChange={(e) => { setJobsInput({ ...jobsInput, startDate: e.target.value }) }}
+                      onChange={(e) => {
+                        setJobsInput({
+                          ...jobsInput,
+                          startDate: e.target.value,
+                        });
+                      }}
                       value={jobsInput.startDate}
                       fullWidth
                       type="month"
@@ -536,7 +616,9 @@ const Resume = () => {
                     <TextField
                       // onChange={handleChange}
                       // name="job_description"
-                      onChange={(e) => { setJobsInput({ ...jobsInput, endDate: e.target.value }) }}
+                      onChange={(e) => {
+                        setJobsInput({ ...jobsInput, endDate: e.target.value });
+                      }}
                       value={jobsInput.endDate}
                       fullWidth
                       type="month"
@@ -544,20 +626,38 @@ const Resume = () => {
                   </Box>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={() => { jobs.push(jobsInput); console.log(jobs); setProfile2({ ...profile2, jobs: jobs }); setOpenJobs(false); console.log(profile2); setJobsInput({ profile: "", organization: "", location: "", description: "", startDate: "", endDate: "" }) }}>Add</Button>
+                  <Button
+                    onClick={() => {
+                      jobs.push(jobsInput);
+                      console.log(jobs);
+                      setProfile2({ ...profile2, jobs: jobs });
+                      setOpenJobs(false);
+                      console.log(profile2);
+                      setJobsInput({
+                        profile: "",
+                        organization: "",
+                        location: "",
+                        description: "",
+                        startDate: "",
+                        endDate: "",
+                      });
+                    }}
+                  >
+                    Add
+                  </Button>
 
                   <Button onClick={handleCloseJobs}>Close</Button>
-                </DialogActions >
-              </Dialog >
-            </Box >
-          </Grid >
-        </Grid >
-      </Container >
+                </DialogActions>
+              </Dialog>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
 
       {/* ============================================INTERNSHIPS=============================================== */}
-      < Container component={Paper} sx={{ display: "flex" }}>
+      <Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
-        < Divider variant="middle" />
+        <Divider variant="middle" />
         <Grid item xs={12} md={12} sx={{ display: "flex" }}>
           <Grid item xs={12} md={3}>
             <Box sx={{ m: 3 }}>
@@ -571,7 +671,11 @@ const Resume = () => {
             <Box sx={{ m: 3 }}>
               {internships.map((i) => (
                 <>
-                  <Typography variant="h6" color="initial" sx={{ display: "flex" }}>
+                  <Typography
+                    variant="h6"
+                    color="initial"
+                    sx={{ display: "flex" }}
+                  >
                     {i.profile}
                     <Box sx={{ ml: 30 }}>
                       <EditIcon sx={{ mr: 2 }}></EditIcon>
@@ -605,13 +709,13 @@ const Resume = () => {
                     sx={{ color: "#666" }}
                   >
                     {i.description}
-
                   </Typography>
                 </>
               ))}
               <Button
                 startIcon={<AddIcon />}
                 onClick={handleClickOpenInternships}
+                sx={{ color: "#9d0000" }}
               >
                 Add Internships
               </Button>
@@ -638,7 +742,12 @@ const Resume = () => {
                       Profile
                     </DialogContentText>
                     <TextField
-                      onChange={(e) => { setInternshipsInput({ ...internshipsInput, profile: e.target.value }) }}
+                      onChange={(e) => {
+                        setInternshipsInput({
+                          ...internshipsInput,
+                          profile: e.target.value,
+                        });
+                      }}
                       value={internshipsInput.profile}
                       // onChange={handleChange}
                       // name="job_operation"
@@ -652,7 +761,12 @@ const Resume = () => {
                     <TextField
                       // onChange={handleChange}
                       // name="job_orgarnization"
-                      onChange={(e) => { setInternshipsInput({ ...internshipsInput, organization: e.target.value }) }}
+                      onChange={(e) => {
+                        setInternshipsInput({
+                          ...internshipsInput,
+                          organization: e.target.value,
+                        });
+                      }}
                       value={internshipsInput.organization}
                       fullWidth
                       label="e.g Internshala"
@@ -664,7 +778,12 @@ const Resume = () => {
                     <TextField
                       // onChange={handleChange}
                       // name="job_location"
-                      onChange={(e) => { setInternshipsInput({ ...internshipsInput, location: e.target.value }) }}
+                      onChange={(e) => {
+                        setInternshipsInput({
+                          ...internshipsInput,
+                          location: e.target.value,
+                        });
+                      }}
                       value={internshipsInput.location}
                       fullWidth
                       label="e.g Mumbai"
@@ -682,7 +801,12 @@ const Resume = () => {
                     <TextField
                       // onChange={handleChange}
                       // name="job_description"
-                      onChange={(e) => { setInternshipsInput({ ...internshipsInput, description: e.target.value }) }}
+                      onChange={(e) => {
+                        setInternshipsInput({
+                          ...internshipsInput,
+                          description: e.target.value,
+                        });
+                      }}
                       value={internshipsInput.description}
                       fullWidth
                       multiline
@@ -696,7 +820,12 @@ const Resume = () => {
                     <TextField
                       // onChange={handleChange}
                       // name="job_description"
-                      onChange={(e) => { setInternshipsInput({ ...internshipsInput, startDate: e.target.value }) }}
+                      onChange={(e) => {
+                        setInternshipsInput({
+                          ...internshipsInput,
+                          startDate: e.target.value,
+                        });
+                      }}
                       value={internshipsInput.startDate}
                       fullWidth
                       type="month"
@@ -708,7 +837,12 @@ const Resume = () => {
                     <TextField
                       // onChange={handleChange}
                       // name="job_description"
-                      onChange={(e) => { setInternshipsInput({ ...internshipsInput, endDate: e.target.value }) }}
+                      onChange={(e) => {
+                        setInternshipsInput({
+                          ...internshipsInput,
+                          endDate: e.target.value,
+                        });
+                      }}
                       value={internshipsInput.endDate}
                       fullWidth
                       type="month"
@@ -716,7 +850,25 @@ const Resume = () => {
                   </Box>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={() => { internships.push(internshipsInput); console.log(internships); setProfile2({ ...profile2, internships: internships }); setOpenInternships(false); console.log(profile2); setInternshipsInput({ profile: "", organization: "", location: "", description: "", startDate: "", endDate: "" }) }}>Add</Button>
+                  <Button
+                    onClick={() => {
+                      internships.push(internshipsInput);
+                      console.log(internships);
+                      setProfile2({ ...profile2, internships: internships });
+                      setOpenInternships(false);
+                      console.log(profile2);
+                      setInternshipsInput({
+                        profile: "",
+                        organization: "",
+                        location: "",
+                        description: "",
+                        startDate: "",
+                        endDate: "",
+                      });
+                    }}
+                  >
+                    Add
+                  </Button>
 
                   <Button onClick={handleCloseInternships}>Close</Button>
                 </DialogActions>
@@ -724,12 +876,12 @@ const Resume = () => {
             </Box>
           </Grid>
         </Grid>
-      </Container >
+      </Container>
 
       {/* ===========================POSITIONS============================ */}
-      < Container component={Paper} sx={{ display: "flex" }}>
+      <Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
-        < Divider variant="middle" />
+        <Divider variant="middle" />
         <Grid item xs={12} md={12} sx={{ display: "flex" }}>
           <Grid item xs={12} md={3}>
             <Box sx={{ m: 3 }}>
@@ -743,11 +895,17 @@ const Resume = () => {
             <Box sx={{ m: 3 }}>
               {positions.map((d) => (
                 <p key={positions.indexOf(d)}>
-                  <p>{positions.indexOf(d) + 1}) {d}</p>
+                  <p>
+                    {positions.indexOf(d) + 1}) {d}
+                  </p>
                   <br />
                 </p>
               ))}
-              <Button startIcon={<AddIcon />} onClick={handleClickOpenPOR}>
+              <Button
+                startIcon={<AddIcon />}
+                sx={{ color: "#9d0000" }}
+                onClick={handleClickOpenPOR}
+              >
                 Add Position of Responsibility
               </Button>
               <Dialog
@@ -769,7 +927,6 @@ const Resume = () => {
                       flexDirection: "column",
                     }}
                   >
-
                     <DialogContentText color="initial">
                       Add any Position of Responsibility that you have handled
                     </DialogContentText>
@@ -780,27 +937,38 @@ const Resume = () => {
                       value={PORText}
                       label="Short description of your Work"
                       variant="outlined"
-                      onChange={(e) => { setPORText(e.target.value); console.log(PORText) }}
-
+                      onChange={(e) => {
+                        setPORText(e.target.value);
+                        console.log(PORText);
+                      }}
                     />
                   </Box>
                 </DialogContent>
 
-
                 <DialogActions>
-                  <Button onClick={() => { setPositions([...positions, PORText]); console.log("POR", positions); setOpenPOR(false); setPORText(""); setProfile2({ ...profile2, positions: positions }) }}>Add</Button>
+                  <Button
+                    onClick={() => {
+                      setPositions([...positions, PORText]);
+                      console.log("POR", positions);
+                      setOpenPOR(false);
+                      setPORText("");
+                      setProfile2({ ...profile2, positions: positions });
+                    }}
+                  >
+                    Add
+                  </Button>
                   <Button onClick={handleClosePOR}>Close</Button>
                 </DialogActions>
               </Dialog>
             </Box>
           </Grid>
         </Grid>
-      </Container >
+      </Container>
 
       {/* =====================================COURSES=========================================== */}
-      < Container component={Paper} sx={{ display: "flex" }}>
+      <Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
-        < Divider variant="middle" />
+        <Divider variant="middle" />
         <Grid item xs={12} md={12} sx={{ display: "flex" }}>
           <Grid item xs={12} md={3}>
             <Box sx={{ m: 3 }}>
@@ -814,7 +982,11 @@ const Resume = () => {
             <Box sx={{ m: 3 }}>
               {courses.map((c) => (
                 <>
-                  <Typography variant="h6" color="initial" sx={{ display: "flex" }}>
+                  <Typography
+                    variant="h6"
+                    color="initial"
+                    sx={{ display: "flex" }}
+                  >
                     {c.title}
                     <Box sx={{ ml: 30 }}>
                       <EditIcon sx={{ mr: 2 }}></EditIcon>
@@ -836,7 +1008,6 @@ const Resume = () => {
                     {c.location}
                   </Typography>
 
-
                   <Typography
                     variant="subtitle2"
                     color="initial"
@@ -850,13 +1021,13 @@ const Resume = () => {
                     sx={{ color: "#666" }}
                   >
                     {c.description}
-
                   </Typography>
                 </>
               ))}
               <Button
                 startIcon={<AddIcon />}
                 onClick={handleClickOpenTrainCourse}
+                sx={{ color: "#9d0000" }}
               >
                 Add Training/courses
               </Button>
@@ -879,11 +1050,14 @@ const Resume = () => {
                       flexDirection: "column",
                     }}
                   >
-                    <DialogContentText color="initial">
-                      Title
-                    </DialogContentText>
+                    <DialogContentText color="initial">Title</DialogContentText>
                     <TextField
-                      onChange={e => { setCourseInput({ ...courseInput, title: e.target.value }) }}
+                      onChange={(e) => {
+                        setCourseInput({
+                          ...courseInput,
+                          title: e.target.value,
+                        });
+                      }}
                       value={courseInput.title}
                       fullWidth
                       label="e.g Machine Learning"
@@ -893,7 +1067,12 @@ const Resume = () => {
                       Orgarnization
                     </DialogContentText>
                     <TextField
-                      onChange={e => { setCourseInput({ ...courseInput, organization: e.target.value }) }}
+                      onChange={(e) => {
+                        setCourseInput({
+                          ...courseInput,
+                          organization: e.target.value,
+                        });
+                      }}
                       value={courseInput.organization}
                       fullWidth
                       label="e.g Internshala"
@@ -903,7 +1082,12 @@ const Resume = () => {
                       Location
                     </DialogContentText>
                     <TextField
-                      onChange={e => { setCourseInput({ ...courseInput, location: e.target.value }) }}
+                      onChange={(e) => {
+                        setCourseInput({
+                          ...courseInput,
+                          location: e.target.value,
+                        });
+                      }}
                       value={courseInput.location}
                       fullWidth
                       label="e.g Mumbai"
@@ -913,7 +1097,12 @@ const Resume = () => {
                       Start Month
                     </DialogContentText>
                     <TextField
-                      onChange={e => { setCourseInput({ ...courseInput, startMonth: e.target.value }) }}
+                      onChange={(e) => {
+                        setCourseInput({
+                          ...courseInput,
+                          startMonth: e.target.value,
+                        });
+                      }}
                       value={courseInput.startMonth}
                       type="month"
                       fullWidth
@@ -923,7 +1112,12 @@ const Resume = () => {
                       End Month
                     </DialogContentText>
                     <TextField
-                      onChange={e => { setCourseInput({ ...courseInput, endMonth: e.target.value }) }}
+                      onChange={(e) => {
+                        setCourseInput({
+                          ...courseInput,
+                          endMonth: e.target.value,
+                        });
+                      }}
                       value={courseInput.endMonth}
                       type="month"
                       fullWidth
@@ -933,7 +1127,12 @@ const Resume = () => {
                       Description
                     </DialogContentText>
                     <TextField
-                      onChange={e => { setCourseInput({ ...courseInput, description: e.target.value }) }}
+                      onChange={(e) => {
+                        setCourseInput({
+                          ...courseInput,
+                          description: e.target.value,
+                        });
+                      }}
                       value={courseInput.description}
                       fullWidth
                       multiline
@@ -944,16 +1143,25 @@ const Resume = () => {
                   </Box>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={() => {
-                    courses.push(courseInput); console.log(courses); setProfile2({ ...profile2, courses: courses }); setOpenTrainCourse(false); console.log(profile2); setCourseInput({
-                      title: "",
-                      organization: "",
-                      location: "",
-                      startMonth: "",
-                      endMonth: "",
-                      description: "",
-                    })
-                  }}>Add</Button>
+                  <Button
+                    onClick={() => {
+                      courses.push(courseInput);
+                      console.log(courses);
+                      setProfile2({ ...profile2, courses: courses });
+                      setOpenTrainCourse(false);
+                      console.log(profile2);
+                      setCourseInput({
+                        title: "",
+                        organization: "",
+                        location: "",
+                        startMonth: "",
+                        endMonth: "",
+                        description: "",
+                      });
+                    }}
+                  >
+                    Add
+                  </Button>
 
                   <Button onClick={handleCloseTrainCourse}>Close</Button>
                 </DialogActions>
@@ -980,7 +1188,11 @@ const Resume = () => {
             <Box sx={{ m: 3 }}>
               {projects.map((p) => (
                 <>
-                  <Typography variant="h6" color="initial" sx={{ display: "flex" }}>
+                  <Typography
+                    variant="h6"
+                    color="initial"
+                    sx={{ display: "flex" }}
+                  >
                     {p.title}
                     <Box sx={{ ml: 30 }}>
                       <EditIcon sx={{ mr: 2 }}></EditIcon>
@@ -1008,13 +1220,13 @@ const Resume = () => {
                     sx={{ color: "#666" }}
                   >
                     {p.description}
-
                   </Typography>
                 </>
               ))}
               <Button
                 startIcon={<AddIcon />}
                 onClick={handleClickOpenAcademics}
+                sx={{ color: "#9d0000" }}
               >
                 Add Academics/personal projects
               </Button>
@@ -1037,13 +1249,16 @@ const Resume = () => {
                       flexDirection: "column",
                     }}
                   >
-                    <DialogContentText color="initial">
-                      Title
-                    </DialogContentText>
+                    <DialogContentText color="initial">Title</DialogContentText>
                     <TextField
                       // onChange={handleChange}
                       // name="projects_operations"
-                      onChange={e => { setProjectsInput({ ...projectsInput, title: e.target.value }) }}
+                      onChange={(e) => {
+                        setProjectsInput({
+                          ...projectsInput,
+                          title: e.target.value,
+                        });
+                      }}
                       value={projectsInput.title}
                       fullWidth
                       label="e.g Operations"
@@ -1053,7 +1268,12 @@ const Resume = () => {
                       Start Month
                     </DialogContentText>
                     <TextField
-                      onChange={e => { setProjectsInput({ ...projectsInput, startMonth: e.target.value }) }}
+                      onChange={(e) => {
+                        setProjectsInput({
+                          ...projectsInput,
+                          startMonth: e.target.value,
+                        });
+                      }}
                       value={projectsInput.startMonth}
                       type="month"
                       fullWidth
@@ -1063,17 +1283,25 @@ const Resume = () => {
                       End Month
                     </DialogContentText>
                     <TextField
-                      onChange={e => { setProjectsInput({ ...projectsInput, endMonth: e.target.value }) }}
+                      onChange={(e) => {
+                        setProjectsInput({
+                          ...projectsInput,
+                          endMonth: e.target.value,
+                        });
+                      }}
                       value={projectsInput.endMonth}
                       type="month"
                       fullWidth
                       variant="standard"
                     />
-                    <DialogContentText color="initial">
-                      Link
-                    </DialogContentText>
+                    <DialogContentText color="initial">Link</DialogContentText>
                     <TextField
-                      onChange={e => { setProjectsInput({ ...projectsInput, link: e.target.value }) }}
+                      onChange={(e) => {
+                        setProjectsInput({
+                          ...projectsInput,
+                          link: e.target.value,
+                        });
+                      }}
                       value={projectsInput.link}
                       fullWidth
                       variant="standard"
@@ -1083,7 +1311,12 @@ const Resume = () => {
                       Description
                     </DialogContentText>
                     <TextField
-                      onChange={e => { setProjectsInput({ ...projectsInput, description: e.target.value }) }}
+                      onChange={(e) => {
+                        setProjectsInput({
+                          ...projectsInput,
+                          description: e.target.value,
+                        });
+                      }}
                       value={projectsInput.description}
                       fullWidth
                       multiline
@@ -1094,7 +1327,23 @@ const Resume = () => {
                   </Box>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={() => { setProjects([...projects, projectsInput]); console.log(projects); setOpenAcademics(false); setProjectsInput({ title: "", startMonth: "", endMonth: "", link: "", description: "" }); setProfile2({ ...profile2, projects: projects }) }}>Add</Button>
+                  <Button
+                    onClick={() => {
+                      setProjects([...projects, projectsInput]);
+                      console.log(projects);
+                      setOpenAcademics(false);
+                      setProjectsInput({
+                        title: "",
+                        startMonth: "",
+                        endMonth: "",
+                        link: "",
+                        description: "",
+                      });
+                      setProfile2({ ...profile2, projects: projects });
+                    }}
+                  >
+                    Add
+                  </Button>
 
                   <Button onClick={handleCloseAcademics}>Close</Button>
                 </DialogActions>
@@ -1102,12 +1351,12 @@ const Resume = () => {
             </Box>
           </Grid>
         </Grid>
-      </Container >
+      </Container>
 
       {/* ===============================SKILLS======================== */}
-      < Container component={Paper} sx={{ display: "flex" }}>
+      <Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
-        < Divider variant="middle" />
+        <Divider variant="middle" />
         <Grid item xs={12} md={12} sx={{ display: "flex" }}>
           <Grid item xs={12} md={3}>
             <Box sx={{ m: 3 }}>
@@ -1122,11 +1371,21 @@ const Resume = () => {
               {skills.map((s) => (
                 <div key={skills.indexOf(s)} style={{ display: "flex" }}>
                   {s.skill}
-                  <Rating precision={0.5} name="size-medium" value={s.rating} size="large" readOnly />
+                  <Rating
+                    precision={0.5}
+                    name="size-medium"
+                    value={s.rating}
+                    size="large"
+                    readOnly
+                  />
                   <br />
                 </div>
               ))}
-              <Button startIcon={<AddIcon />} onClick={handleClickOpenSkills}>
+              <Button
+                startIcon={<AddIcon />}
+                sx={{ color: "#9d0000" }}
+                onClick={handleClickOpenSkills}
+              >
                 Add Skills
               </Button>
               <Dialog
@@ -1151,7 +1410,13 @@ const Resume = () => {
                     </DialogContentText>
                     <TextField
                       // onChange={handleChange}
-                      onChange={(e) => { setSkillsInput({ ...skillsInput, skill: e.target.value }); console.log(skillsInput) }}
+                      onChange={(e) => {
+                        setSkillsInput({
+                          ...skillsInput,
+                          skill: e.target.value,
+                        });
+                        console.log(skillsInput);
+                      }}
                       fullWidth
                       value={skillsInput.skill}
                       label="e.g Web Development"
@@ -1163,7 +1428,13 @@ const Resume = () => {
                     <TextField
                       // onChange={handleChange}
                       type="number"
-                      onChange={e => { setSkillsInput({ ...skillsInput, rating: e.target.value }); console.log(skillsInput) }}
+                      onChange={(e) => {
+                        setSkillsInput({
+                          ...skillsInput,
+                          rating: e.target.value,
+                        });
+                        console.log(skillsInput);
+                      }}
                       value={skillsInput.rating}
                       fullWidth
                       label="e.g 2.5/5 OR 4/5 out of 5"
@@ -1172,19 +1443,30 @@ const Resume = () => {
                   </Box>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={() => { skills.push(skillsInput); console.log(skills); setOpenSkills(false); setProfile2({ ...profile2, skills: skills }); console.log(profile2); setSkillsInput({ skill: "", rating: 0 }) }}>Add</Button>
+                  <Button
+                    onClick={() => {
+                      skills.push(skillsInput);
+                      console.log(skills);
+                      setOpenSkills(false);
+                      setProfile2({ ...profile2, skills: skills });
+                      console.log(profile2);
+                      setSkillsInput({ skill: "", rating: 0 });
+                    }}
+                  >
+                    Add
+                  </Button>
                   <Button onClick={handleCloseSkills}>Close</Button>
-                </DialogActions >
-              </Dialog >
-            </Box >
-          </Grid >
-        </Grid >
-      </Container >
+                </DialogActions>
+              </Dialog>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
 
       {/* =========================================LINKS====================================== */}
-      < Container component={Paper} sx={{ display: "flex" }}>
+      <Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
-        < Divider variant="middle" />
+        <Divider variant="middle" />
         <Grid item xs={12} md={12} sx={{ display: "flex" }}>
           <Grid item xs={12} md={3}>
             <Box sx={{ m: 3 }}>
@@ -1196,25 +1478,44 @@ const Resume = () => {
           {/* Right Element of Container */}
           <Grid item xs={12} md={9}>
             <Box sx={{ m: 3 }}>
-
-              {linksInput.blog !== "" ? <>
-                Blog: <a href={linksInput.blog}>{linksInput.blog}</a>
-              </> : null}<br />
-              {linksInput.github !== "" ? <>
-                Github Profile: <a href={linksInput.github}>{linksInput.github}</a>
-              </> : null}<br />
-              {linksInput.linkedin !== "" ? <>
-                Linkedin Profile: <a href={linksInput.linkedin}>{linksInput.linkedin}</a>
-              </> : null}<br />
-              {linksInput.behance !== "" ? <>
-                Behance Profile: <a href={linksInput.behance}>{linksInput.behance}</a>
-              </> : null}<br />
-              {linksInput.other !== "" ? <>
-                Other Profile: <a href={linksInput.other}>{linksInput.other}</a>
-              </> : null}<br />
+              {linksInput.blog !== "" ? (
+                <>
+                  Blog: <a href={linksInput.blog}>{linksInput.blog}</a>
+                </>
+              ) : null}
+              <br />
+              {linksInput.github !== "" ? (
+                <>
+                  Github Profile:{" "}
+                  <a href={linksInput.github}>{linksInput.github}</a>
+                </>
+              ) : null}
+              <br />
+              {linksInput.linkedin !== "" ? (
+                <>
+                  Linkedin Profile:{" "}
+                  <a href={linksInput.linkedin}>{linksInput.linkedin}</a>
+                </>
+              ) : null}
+              <br />
+              {linksInput.behance !== "" ? (
+                <>
+                  Behance Profile:{" "}
+                  <a href={linksInput.behance}>{linksInput.behance}</a>
+                </>
+              ) : null}
+              <br />
+              {linksInput.other !== "" ? (
+                <>
+                  Other Profile:{" "}
+                  <a href={linksInput.other}>{linksInput.other}</a>
+                </>
+              ) : null}
+              <br />
               <Button
                 startIcon={<AddIcon />}
                 onClick={handleClickOpenWorkSamples}
+                sx={{ color: "#9d0000" }}
               >
                 Add Porfolio/Work samples
               </Button>
@@ -1241,7 +1542,9 @@ const Resume = () => {
                       Blog link
                     </DialogContentText>
                     <TextField
-                      onChange={e => { setlinksInput({ ...linksInput, blog: e.target.value }) }}
+                      onChange={(e) => {
+                        setlinksInput({ ...linksInput, blog: e.target.value });
+                      }}
                       value={linksInput.blog}
                       fullWidth
                       label="http://myblog.com"
@@ -1251,7 +1554,12 @@ const Resume = () => {
                       GitHub profile
                     </DialogContentText>
                     <TextField
-                      onChange={e => { setlinksInput({ ...linksInput, github: e.target.value }) }}
+                      onChange={(e) => {
+                        setlinksInput({
+                          ...linksInput,
+                          github: e.target.value,
+                        });
+                      }}
                       value={linksInput.github}
                       fullWidth
                       label="http://github.com/my_profile"
@@ -1261,7 +1569,12 @@ const Resume = () => {
                       Linkedin Link
                     </DialogContentText>
                     <TextField
-                      onChange={e => { setlinksInput({ ...linksInput, linkedin: e.target.value }) }}
+                      onChange={(e) => {
+                        setlinksInput({
+                          ...linksInput,
+                          linkedin: e.target.value,
+                        });
+                      }}
                       value={linksInput.linkedin}
                       fullWidth
                       label="http://linkedin.com/my_profile"
@@ -1271,7 +1584,12 @@ const Resume = () => {
                       Behance portfolio link
                     </DialogContentText>
                     <TextField
-                      onChange={e => { setlinksInput({ ...linksInput, behance: e.target.value }) }}
+                      onChange={(e) => {
+                        setlinksInput({
+                          ...linksInput,
+                          behance: e.target.value,
+                        });
+                      }}
                       value={linksInput.behance}
                       fullWidth
                       label="http://behance.net/my_profile"
@@ -1287,7 +1605,9 @@ const Resume = () => {
                       the link here.
                     </DialogContentText>
                     <TextField
-                      onChange={e => { setlinksInput({ ...linksInput, other: e.target.value }) }}
+                      onChange={(e) => {
+                        setlinksInput({ ...linksInput, other: e.target.value });
+                      }}
                       value={linksInput.other}
                       fullWidth
                       label="https://myworksample.com"
@@ -1296,7 +1616,17 @@ const Resume = () => {
                   </Box>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={() => { setLinks(linksInput); console.log(links); setProfile2({ ...profile2, links: links }); setOpenWorksamples(false); console.log(profile2); }}>Add</Button>
+                  <Button
+                    onClick={() => {
+                      setLinks(linksInput);
+                      console.log(links);
+                      setProfile2({ ...profile2, links: links });
+                      setOpenWorksamples(false);
+                      console.log(profile2);
+                    }}
+                  >
+                    Add
+                  </Button>
 
                   <Button onClick={handleCloseWorksamples}>Close</Button>
                 </DialogActions>
@@ -1304,7 +1634,7 @@ const Resume = () => {
             </Box>
           </Grid>
         </Grid>
-      </Container >
+      </Container>
 
       <Container component={Paper} sx={{ display: "flex" }}>
         {/* Left Element of Container */}
@@ -1326,18 +1656,19 @@ const Resume = () => {
             <Box sx={{ m: 3 }}>
               {additionalDetails.map((d) => (
                 <p key={additionalDetails.indexOf(d)}>
-                  <p>{additionalDetails.indexOf(d) + 1}) {d}</p>
+                  <p>
+                    {additionalDetails.indexOf(d) + 1}) {d}
+                  </p>
                   <br />
                 </p>
               ))}
               <Button
                 startIcon={<AddIcon />}
                 onClick={handleClickOpenAccomplishments}
+                sx={{ color: "#9d0000" }}
               >
                 Add Accomplishments/additional Details
               </Button>
-
-
 
               <Dialog
                 fullWidth
@@ -1371,12 +1702,31 @@ const Resume = () => {
                       label="Short description of your Work"
                       variant="outlined"
                       value={additionalDetailsText}
-                      onChange={(e) => { setAdditionalDetailsText(e.target.value); console.log(additionalDetailsText) }}
+                      onChange={(e) => {
+                        setAdditionalDetailsText(e.target.value);
+                        console.log(additionalDetailsText);
+                      }}
                     />
                   </Box>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={() => { setadditionalDetails([...additionalDetails, additionalDetailsText]); console.log("Additional Details", additionalDetails); setOpenAccomplishment(false); setAdditionalDetailsText(""); setProfile2({ ...profile2, additionalDetails: additionalDetails }) }}>Add</Button>
+                  <Button
+                    onClick={() => {
+                      setadditionalDetails([
+                        ...additionalDetails,
+                        additionalDetailsText,
+                      ]);
+                      console.log("Additional Details", additionalDetails);
+                      setOpenAccomplishment(false);
+                      setAdditionalDetailsText("");
+                      setProfile2({
+                        ...profile2,
+                        additionalDetails: additionalDetails,
+                      });
+                    }}
+                  >
+                    Add
+                  </Button>
                   <Button onClick={handleCloseAccomplishments}>Close</Button>
                 </DialogActions>
               </Dialog>

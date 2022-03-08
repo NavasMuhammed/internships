@@ -1,26 +1,35 @@
-import React from 'react'
-import { Typography, Container, Grid, Box, Divider, Button } from "@mui/material"
+import React from "react";
+import {
+  Typography,
+  Container,
+  Grid,
+  Box,
+  Divider,
+  Button,
+} from "@mui/material";
 // import { Instagram,Facebook, } from '@material-ui/icons'
 // import { LinkedIn ,Twitter } from '@material-ui/icons'
-import FacebookIcon from '@mui/icons-material/Facebook';
-import { Link } from 'react-router-dom'
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import FacebookIcon from "@mui/icons-material/Facebook";
+import { Link } from "react-router-dom";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 const Footer = () => {
-    return (
-        <>
-            <footer>
-                <Box
-                    sx={{
-                        marginLeft: 0,
-                        marginRight: 0,
-                        backgroundColor: "#404040",
-                    }}
-
-                    color="white" p={5} m={10}
-                    textAlign='center' >
-                    <Container maxWidth="lg" sx={{}}>
+  return (
+    <>
+      <footer>
+        <Box
+          sx={{
+            marginLeft: 0,
+            marginRight: 0,
+            backgroundColor: "#404040",
+          }}
+          color="white"
+          p={5}
+          m={10}
+          textAlign="center"
+        >
+          {/* <Container maxWidth="lg" sx={{}}>
                         <Grid container spacing={5}>
                             <Grid item xs={12} sm={3}>
                                 <Box borderBottom={1} mb={1} sx={{ fontWeight: 'bold' }} >Product</Box>
@@ -73,36 +82,48 @@ const Footer = () => {
 
                         </Grid>
 
-                    </Container>
+                    </Container> */}
 
-                    <Box pt={3} >
-                        <Divider style={{ background: 'white' }} />
-                        <Container maxWidth="lg">
+          <Box>
+            {/* <Divider style={{ background: "white" }} /> */}
+            <Container maxWidth="lg">
+              <Grid container spacing={5}>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                    Follow Us
+                  </Typography>
+                  <Button color="inherit" to="/" component={Link}>
+                    <InstagramIcon />
+                  </Button>
+                  <Button color="inherit">
+                    <FacebookIcon />
+                  </Button>
+                  <Button color="inherit">
+                    <LinkedInIcon />
+                  </Button>
+                  <Button color="inherit">
+                    <TwitterIcon />
+                  </Button>
+                </Grid>
 
-                            <Grid container spacing={5}>
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  bgcolor="secondary"
+                  textAlign="center"
+                >
+                  <Typography variant="h6" align="center">
+                    ©Copyright 2021 XcitEducation
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Container>
+          </Box>
+        </Box>
+      </footer>
+    </>
+  );
+};
 
-                                <Grid item xs={12} sm={6}>
-
-                                    <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Follow Us</Typography>
-                                    <Button color='inherit' to='/' component={Link}><InstagramIcon /></Button>
-                                    <Button color='inherit' ><FacebookIcon /></Button>
-                                    <Button color='inherit' ><LinkedInIcon /></Button>
-                                    <Button color='inherit' ><TwitterIcon /></Button>
-                                </Grid>
-
-                                <Grid item xs={12} sm={6} bgcolor='secondary' textAlign='center'  >
-                                    <Typography variant='h6' align='center' >©Copyright 2021 XcitEducation</Typography>
-                                </Grid>
-
-
-                            </Grid>
-
-                        </Container>
-                    </Box>
-                </Box>
-            </footer>
-        </>
-    )
-}
-
-export default Footer
+export default Footer;

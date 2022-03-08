@@ -71,7 +71,14 @@ function Login() {
       <Grid>
         <Paper className="paper" elevation={10} style={paperStyle}>
           <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
-            <Tabs value={tabValue} onChange={handleTabChange} centered>
+            <Tabs
+              value={tabValue}
+              onChange={handleTabChange}
+              sx={{ textDecorationColor: "#9d0000" }}
+              // textColor="secondary"
+              // indicatorColor="secondary"
+              centered
+            >
               <Tab value="student" label="Student" />
               <Tab value="employer" label="Employer" />
             </Tabs>
@@ -140,8 +147,13 @@ function Login() {
                     fullWidth
                     required
                   ></TextField>
-                  <Typography style={btstyle}>
-                    <Link to="#">Forgot Password</Link>
+                  <Typography style={btstyle} sx={{ color: "#9d0000" }}>
+                    <Link
+                      to="#"
+                      sx={{ textDecoration: "none", color: "#9d0000" }}
+                    >
+                      Forgot Password
+                    </Link>
                   </Typography>
                 </Grid>
                 <Button
@@ -149,6 +161,7 @@ function Login() {
                   color="primary"
                   variant="contained"
                   style={btstyle}
+                  sx={{ background: "#9d0000" }}
                   fullWidth
                 >
                   Login
@@ -156,7 +169,13 @@ function Login() {
               </form>
               <Grid>
                 <Typography style={font}>
-                  New to Internshala? <Link to="/signup">Register</Link>
+                  New to Internshala?{" "}
+                  <Link
+                    to="/signup"
+                    sx={{ textDecoration: "none", Color: "#9d0000" }}
+                  >
+                    Register
+                  </Link>
                 </Typography>
               </Grid>
             </div>

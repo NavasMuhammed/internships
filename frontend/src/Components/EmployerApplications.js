@@ -27,9 +27,6 @@ import "@asseinfo/react-kanban/dist/styles.css";
 // Use your own styles to override the default styles
 // import "./styles.css";
 
-
-
-
 // function UncontrolledBoard() {
 //   return (
 //     <Board
@@ -51,7 +48,7 @@ import "@asseinfo/react-kanban/dist/styles.css";
 // }
 const EmployerApplications = () => {
   const [value, setvalue] = useState(0);
-  const [applicationData, setApplicationData] = useState([])
+  const [applicationData, setApplicationData] = useState([]);
   const handleTabs = (e, val) => {
     console.warn(val);
     setvalue(val);
@@ -59,18 +56,21 @@ const EmployerApplications = () => {
   const { id } = useParams();
 
   const getAllApplicationsOfInternship = async () => {
-    const res = await fetch(`http://localhost:8080/application/getAllApplicationsOfInternship/${id}`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-    })
+    const res = await fetch(
+      `http://localhost:8080/application/getAllApplicationsOfInternship/${id}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = await res.json();
-    console.log(data)
-    setApplicationData(data)
-    console.log("application data", applicationData)
-  }
+    console.log(data);
+    setApplicationData(data);
+    console.log("application data", applicationData);
+  };
 
   const board = {
     columns: [
@@ -81,19 +81,31 @@ const EmployerApplications = () => {
           {
             id: 1,
             title: "card title 1",
-            description: "Card content"
+            description: (
+              <Button variant="contained" size="small">
+                View Application
+              </Button>
+            ),
           },
           {
             id: 2,
             title: "Card title 2",
-            description: "Card content"
+            description: (
+              <Button variant="contained" size="small">
+                View Application
+              </Button>
+            ),
           },
           {
             id: 3,
             title: "Card title 3",
-            description: "Card content"
-          }
-        ]
+            description: (
+              <Button variant="contained" size="small">
+                View Application
+              </Button>
+            ),
+          },
+        ],
       },
       {
         id: 2,
@@ -102,19 +114,31 @@ const EmployerApplications = () => {
           {
             id: 4,
             title: "Card title 4",
-            description: "Card content"
+            description: (
+              <Button variant="contained" size="small">
+                View Application
+              </Button>
+            ),
           },
           {
             id: 5,
             title: "Card title 5",
-            description: "Card content"
+            description: (
+              <Button variant="contained" size="small">
+                View Application
+              </Button>
+            ),
           },
           {
             id: 6,
             title: "Card title 6",
-            description: "Card content"
-          }
-        ]
+            description: (
+              <Button variant="contained" size="small">
+                View Application
+              </Button>
+            ),
+          },
+        ],
       },
       {
         id: 3,
@@ -123,14 +147,22 @@ const EmployerApplications = () => {
           {
             id: 7,
             title: "Card title 7",
-            description: "Card content"
+            description: (
+              <Button variant="contained" size="small">
+                View Application
+              </Button>
+            ),
           },
           {
             id: 8,
             title: "Card title 8",
-            description: "Card content"
-          }
-        ]
+            description: (
+              <Button variant="contained" size="small">
+                View Application
+              </Button>
+            ),
+          },
+        ],
       },
       {
         id: 4,
@@ -139,16 +171,24 @@ const EmployerApplications = () => {
           {
             id: 9,
             title: "Card title 9",
-            description: "Card content"
+            description: (
+              <Button variant="contained" size="small">
+                View Application
+              </Button>
+            ),
           },
           {
             id: 10,
             title: "Card title 10",
-            description: "Card content"
-          }
-        ]
-      }
-    ]
+            description: (
+              <Button variant="contained" size="small">
+                View Application
+              </Button>
+            ),
+          },
+        ],
+      },
+    ],
   };
 
   function ControlledBoard() {
@@ -169,18 +209,26 @@ const EmployerApplications = () => {
   }
   const [controlledBoard, setBoard] = useState(board);
   useEffect(() => {
-    getAllApplicationsOfInternship()
-  }, [controlledBoard])
+    getAllApplicationsOfInternship();
+  }, [controlledBoard]);
 
   return (
     <>
-      <h1 style={{ textAlign: "center", margin: "15px" }}>All UI/UX Designing Applications</h1>
+      <h1 style={{ textAlign: "center", margin: "15px" }}>
+        All UI/UX Designing Applications
+      </h1>
       <ControlledBoard />
-      <Button style={{ position: "absolute", right: "30%" }} variant="contained">Submit Changes</Button>
+      <Button
+        style={{ position: "absolute", right: "30%" }}
+        variant="contained"
+      >
+        Submit Changes
+      </Button>
     </>
   );
-}
-{/* <Container>
+};
+{
+  /* <Container>
         <Box sx={{ flexGrow: 1, pt: 3 }}>
           <Typography variant="h6" color="initial">
             Filters
@@ -442,7 +490,8 @@ const EmployerApplications = () => {
       </Container> 
     </>
   );
-};*/}
+};*/
+}
 
 // function TabPanel(props) {
 //   const { children, value, index } = props;

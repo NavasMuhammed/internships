@@ -15,7 +15,6 @@ import {
   TableBody,
   TableHead,
   TableRow,
-
 } from "@mui/material";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
@@ -36,12 +35,13 @@ const EmployerDashboard = () => {
     (state) => state.allEmployerInternships.employerInternships
   );
   let now = new Date();
-  var dateString = moment(now).format('YYYY-MM-DD');
-  const isLastDatePassed = allEmployerInternshipsList.data[0].lastDateToApply.slice(4, 16) > dateString
+  var dateString = moment(now).format("YYYY-MM-DD");
+  const isLastDatePassed =
+    allEmployerInternshipsList.data[0].lastDateToApply.slice(4, 16) >
+    dateString;
   useEffect(() => {
-    console.log("All employer internships", allEmployerInternshipsList)
+    console.log("All employer internships", allEmployerInternshipsList);
     // dispatch(allEmployerInternshipsAction());
-
 
     // console.log("Dispatched");
   }, [dispatch]);
@@ -182,19 +182,35 @@ const EmployerDashboard = () => {
             {allEmployerInternshipsList.data.map((i) => (
               <TableBody key={i._id}>
                 <TableRow>
-                  <TableCell>{allEmployerInternshipsList.data.indexOf(i) + 1}</TableCell>
+                  <TableCell>
+                    {allEmployerInternshipsList.data.indexOf(i) + 1}
+                  </TableCell>
                   <TableCell>{i.title}</TableCell>
                   <TableCell>ACTIVE</TableCell>
                   {/* <TableCell> {allEmployerInternshipsList.data[allEmployerInternshipsList.data.indexOf(i)].lastDateToApply.slice(4, 16) > dateString ? "CLOSED" : "ACTIVE"}</TableCell> */}
 
                   {/* <TableCell> {allEmployerInternshipsList.data[allEmployerInternshipsList.data.indexOf(i)].lastDateToApply.slice(0, 16) > dateString ? "CLOSED" : "ACTIVE"}</TableCell> */}
-                  <TableCell><Link style={{ textDecoration: "none" }} to={`/employer/applications/${i._id}`}><Button variant="contained" color="primary">View Applications({i.noOfApplicants})</Button></Link></TableCell>
+                  <TableCell>
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      to={`/employer/applications/${i._id}`}
+                    >
+                      <Button
+                        variant="contained"
+                        sx={{
+                          background: "#9d0000",
+                          "&:hover": { background: "#9d0000" },
+                          "&:focus": { background: "#9d0000" },
+                        }}
+                      >
+                        View Applications({i.noOfApplicants})
+                      </Button>
+                    </Link>
+                  </TableCell>
                   <TableCell>{i.lastDateToApply.slice(0, 16)}</TableCell>
-
                 </TableRow>
               </TableBody>
             ))}
-
           </Table>
         </TableContainer>
         {/* <TableRow>

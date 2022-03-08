@@ -30,7 +30,7 @@ import Stack from "@mui/material/Stack";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import axios from "axios";
-import Modal from '@mui/material/Modal';
+import Modal from "@mui/material/Modal";
 import { createInternship } from "../actions/internshipActions";
 // import { logout } from "../actions/userActions";
 import { allInternshipsListAction } from "../actions/internshipActions";
@@ -128,7 +128,10 @@ function CreateInternship() {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
   const [otherTitle, setOtherTitle] = useState("");
-  const [questionsArray, setQuestionsArray] = useState(["Why should you be hired for this internship?", "Are you available for the duration of internship?"])
+  const [questionsArray, setQuestionsArray] = useState([
+    "Why should you be hired for this internship?",
+    "Are you available for the duration of internship?",
+  ]);
 
   const [form, setForm] = useState({
     employerId: userInfo.data._id,
@@ -152,7 +155,7 @@ function CreateInternship() {
     isPPO: false,
     website: userInfo.data.website,
   });
-  const [question, setQuestion] = useState("")
+  const [question, setQuestion] = useState("");
 
   return (
     <>
@@ -172,13 +175,13 @@ function CreateInternship() {
           <Box mt={2}>
             <Typography textAlign="center">
               Need assistance? please visit{" "}
-              <Link href="#" sx={{ textDecoration: "none" }}>
+              <Link href="#" sx={{ textDecoration: "none", color: "#9d0000" }}>
                 Help Center
               </Link>
             </Typography>
             <Typography mt={3} variant="h4" textAlign="center">
               Post Internship{" "}
-              <Link href="#" sx={{ textDecoration: "none" }}>
+              <Link href="#" sx={{ textDecoration: "none", color: "#9d0000" }}>
                 (Important guidlines)
               </Link>
             </Typography>
@@ -366,7 +369,15 @@ function CreateInternship() {
                           setForm({ ...form, isPartTime: true });
                           console.log(form);
                         }}
-                        control={<Radio />}
+                        control={
+                          <Radio
+                            sx={{
+                              "&.Mui-checked": {
+                                color: "#9d0000",
+                              },
+                            }}
+                          />
+                        }
                         label="Yes"
                       />
                       <FormControlLabel
@@ -375,7 +386,15 @@ function CreateInternship() {
                           console.log(form);
                         }}
                         value="no"
-                        control={<Radio />}
+                        control={
+                          <Radio
+                            sx={{
+                              "&.Mui-checked": {
+                                color: "#9d0000",
+                              },
+                            }}
+                          />
+                        }
                         label="No"
                       />
                     </RadioGroup>
@@ -414,14 +433,30 @@ function CreateInternship() {
                     >
                       <FormControlLabel
                         value="yes"
-                        control={<Radio />}
+                        control={
+                          <Radio
+                            sx={{
+                              "&.Mui-checked": {
+                                color: "#9d0000",
+                              },
+                            }}
+                          />
+                        }
                         onClick={() => setIsImmediately(true)}
                         label="Immediately (within 30 days)"
                       />
                       <FormControlLabel
                         value="no"
                         onClick={() => setIsImmediately(false)}
-                        control={<Radio />}
+                        control={
+                          <Radio
+                            sx={{
+                              "&.Mui-checked": {
+                                color: "#9d0000",
+                              },
+                            }}
+                          />
+                        }
                         label="Later"
                       />
                     </RadioGroup>
@@ -691,7 +726,15 @@ function CreateInternship() {
                         console.log(form);
                       }}
                       value="yes"
-                      control={<Radio />}
+                      control={
+                        <Radio
+                          sx={{
+                            "&.Mui-checked": {
+                              color: "#9d0000",
+                            },
+                          }}
+                        />
+                      }
                       label="Yes"
                     />
                     <FormControlLabel
@@ -700,7 +743,15 @@ function CreateInternship() {
                         console.log(form);
                       }}
                       value="no"
-                      control={<Radio />}
+                      control={
+                        <Radio
+                          sx={{
+                            "&.Mui-checked": {
+                              color: "#9d0000",
+                            },
+                          }}
+                        />
+                      }
                       label="No"
                     />
                   </RadioGroup>
@@ -751,7 +802,9 @@ function CreateInternship() {
                 </Typography>
                 {questionsArray.map((q) => (
                   <Typography mt={1}>
-                    <span style={{ fontWeight: "bold" }}>Question {questionsArray.indexOf(q) + 1}:</span>
+                    <span style={{ fontWeight: "bold" }}>
+                      Question {questionsArray.indexOf(q) + 1}:
+                    </span>
                     {q}
                   </Typography>
                 ))}
@@ -764,51 +817,81 @@ function CreateInternship() {
                   Are you available for 6 months?
                 </Typography> */}
                 {/* <br /> */}
-                <Button onClick={handleModalOpen}>Add a customized question</Button>
+                <Button onClick={handleModalOpen} sx={{ color: "#9d0000" }}>
+                  Add a customized question
+                </Button>
 
-                <Modal
-                  open={modalOpen}
-                  onClose={handleModalClose}
-                >
-                  <Box sx={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: 800,
-                    bgcolor: 'background.paper',
-                    border: '2px solid #000',
-                    boxShadow: 24,
-                    p: 4
-                  }}>
+                <Modal open={modalOpen} onClose={handleModalClose}>
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      width: 800,
+                      bgcolor: "background.paper",
+                      border: "2px solid #000",
+                      boxShadow: 24,
+                      p: 4,
+                    }}
+                  >
                     <Typography variant="h6" component="h2">
                       Add a customized question
                     </Typography>
-                    <TextField fullWidth onChange={(e) => { setQuestion(e.target.value); console.log(question) }} id="standard-basic" label="Add a customized question" variant="standard" />
-                    <br /><br />
-                    <Button variant="contained" color="primary"
-                      onClick={() => {
-                        questionsArray.push(question)
-                        // setQuestionsArray({ ...questionsArray, question }); 
-                        console.log(questionsArray)
-                        console.log(form)
-                        setModalOpen(false)
+                    <TextField
+                      fullWidth
+                      onChange={(e) => {
+                        setQuestion(e.target.value);
+                        console.log(question);
                       }}
-                    >Add Question</Button>
+                      id="standard-basic"
+                      label="Add a customized question"
+                      variant="standard"
+                    />
+                    <br />
+                    <br />
+                    <Button
+                      variant="contained"
+                      sx={{ background: "#9d0000" }}
+                      onClick={() => {
+                        questionsArray.push(question);
+                        // setQuestionsArray({ ...questionsArray, question });
+                        console.log(questionsArray);
+                        console.log(form);
+                        setModalOpen(false);
+                      }}
+                    >
+                      Add Question
+                    </Button>
                     {/* <Typography sx={{ mt: 2 }}>
                       Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
                     </Typography> */}
                   </Box>
                 </Modal>
-
               </Grid>
             </Paper>
           </Grid>
           <Grid ml={10} mr={10} mt={3} display="flex" justifyContent="flex-end">
-            <Button sx={{ marginRight: "1.5rem" }} variant="outlined">
+            <Button
+              sx={{
+                marginRight: "1.5rem",
+                color: "#9d0000",
+                // "&:hover": { Color: "#9d0000" },
+                "&:focus": { background: "#9d0000" },
+              }}
+              variant="outlined"
+            >
               Save Draft
             </Button>
-            <Button type="submit" variant="contained">
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{
+                background: "#9d0000",
+                "&:hover": { background: "#9d0000" },
+                "&:focus": { background: "#9d0000" },
+              }}
+            >
               Post Internship
             </Button>
           </Grid>

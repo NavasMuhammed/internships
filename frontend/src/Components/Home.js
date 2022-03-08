@@ -7,7 +7,10 @@ import work from "./image/work.jfif";
 import job from "./image/jobs.png";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@mui/styles";
-import { allInternshipsListAction, allEmployerInternshipsAction } from "../actions/internshipActions";
+import {
+  allInternshipsListAction,
+  allEmployerInternshipsAction,
+} from "../actions/internshipActions";
 import { allUserApplicationsAction } from "../actions/applicationActions";
 const useStyles = makeStyles((theme) => ({
   topographyStyle: {
@@ -26,7 +29,7 @@ const Home = () => {
     dispatch(allInternshipsListAction());
     if (userInfo) {
       dispatch(allEmployerInternshipsAction(userInfo.data._id));
-      dispatch(allUserApplicationsAction(userInfo.data._id))
+      dispatch(allUserApplicationsAction(userInfo.data._id));
     }
     // console.log("Dispatched");
   }, [dispatch]);
@@ -35,7 +38,6 @@ const Home = () => {
   //   dispatch(allEmployerInternshipsAction(userInfo.data._id));
   //   // console.log("Dispatched");
   // }, [dispatch, userInfo]);
-
 
   return (
     <>
@@ -48,7 +50,14 @@ const Home = () => {
             autoComplete="false"
             placeholder="What are you looking for?"
           />
-          <Button variant="contained">
+          <Button
+            variant="contained"
+            sx={{
+              background: "#9d0000",
+              "&:hover": { background: "#9d0000" },
+              "&:focus": { background: "#9d0000" },
+            }}
+          >
             <SearchIcon />
           </Button>
         </div>
@@ -58,7 +67,13 @@ const Home = () => {
         <Typography display="flex" justifyContent="center">
           <span>Apply to 10,000+ internships for free</span>
           <Button
-            style={{ width: "124px", marginLeft: "5px" }}
+            style={{
+              width: "124px",
+              marginLeft: "5px",
+              background: "#9d0000",
+              "&:hover": { background: "#9d0000" },
+              "&:focus": { background: "#9d0000" },
+            }}
             variant="contained"
             endIcon={<SendIcon />}
           >
@@ -177,7 +192,7 @@ const Home = () => {
         <Typography display="flex" justifyContent="center" mb={4}>
           <div>Learn new-age skills on the gob</div>
           <Button
-            style={{ width: "124px", marginLeft: "5px" }}
+            style={{ width: "124px", marginLeft: "5px", background: "#9d0000" }}
             variant="contained"
             endIcon={<SendIcon />}
           >
@@ -240,7 +255,7 @@ const Home = () => {
         <Typography display="flex" justifyContent="center" mb={4}>
           <div>Premium fresher jobs on your fingertips</div>
           <Button
-            style={{ width: "124px", marginLeft: "5px" }}
+            style={{ width: "124px", marginLeft: "5px", background: "#9d0000" }}
             variant="contained"
             endIcon={<SendIcon />}
           >

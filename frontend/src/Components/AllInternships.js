@@ -226,7 +226,7 @@ const AllInternships = () => {
             defaultValue={10}
             aria-label="Default"
             valueLabelDisplay="auto"
-            sx={{ mx: 2 }}
+            sx={{ mx: 2, color: "#9d0000" }}
           />
           <Typography variant="subtitle2" color="initial" sx={{ mx: 2 }}>
             Start from (or after)
@@ -415,7 +415,14 @@ const AllInternships = () => {
                     // component={Link}
                     // to="/particularInternship"
                     > */}
-                      <Button variant="contained" color="primary">
+                      <Button
+                        variant="contained"
+                        sx={{
+                          background: "#9d0000",
+                          "&:hover": { background: "#9d0000" },
+                          "&:focus": { background: "#9d0000" },
+                        }}
+                      >
                         View Internship
                       </Button>
                       {/* </Typography> */}

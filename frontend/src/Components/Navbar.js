@@ -72,26 +72,24 @@ const Navbar = () => {
           </ListItemButton>
           {userInfo ? (
             <>
-              {
-                userInfo.data.isEmployer === true ? (
-                  <>
-                    <ListItemButton component={Link} to="/employer/dashboard">
-                      <ListItemText primary="Employer Dashboard"></ListItemText>
-                    </ListItemButton>
-                    <ListItemButton component={Link} to="/employer/applications">
-                      <ListItemText primary="Employer Applications"></ListItemText>
-                    </ListItemButton>
-                  </>
-                ) : (
-                  <ListItemButton component={Link} to="myapplications">
-                    <ListItemText primary="My Applications"></ListItemText>
+              {userInfo.data.isEmployer === true ? (
+                <>
+                  <ListItemButton component={Link} to="/employer/dashboard">
+                    <ListItemText primary="Employer Dashboard"></ListItemText>
                   </ListItemButton>
-                )
-              }
+                  <ListItemButton component={Link} to="/employer/applications">
+                    <ListItemText primary="Employer Applications"></ListItemText>
+                  </ListItemButton>
+                </>
+              ) : (
+                <ListItemButton component={Link} to="myapplications">
+                  <ListItemText primary="My Applications"></ListItemText>
+                </ListItemButton>
+              )}
             </>
-          ) : ("")}
-
-
+          ) : (
+            ""
+          )}
 
           {/* <ListItemButton component={Link} to="/particularInternship">
             <ListItemText primary="Particular Internship"></ListItemText>
@@ -101,7 +99,7 @@ const Navbar = () => {
           </ListItemButton> */}
         </List>
       </Drawer>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ background: "#9d0000" }}>
         <Toolbar>
           <IconButton color="inherit" onClick={() => setOpen(true)}>
             <MenuRoundedIcon />
@@ -172,10 +170,10 @@ const Navbar = () => {
                           // color="success"
                           // color="inherit"
                           style={{ color: "white", backgroundColor: "#23b502" }}
-                        // {...bindTrigger(popupState)}
-                        // endIcon={<ArrowDropDownOutlinedIcon fontSize="small" />
+                          // {...bindTrigger(popupState)}
+                          // endIcon={<ArrowDropDownOutlinedIcon fontSize="small" />
 
-                        // }
+                          // }
                         >
                           Register
                         </Button>
